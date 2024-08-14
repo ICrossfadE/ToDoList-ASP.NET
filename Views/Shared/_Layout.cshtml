@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ToDoList</title>
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ToDoList.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="px-4 py-4 bg-slate-400 border-bottom box-shadow mb-3 ">
+            <div class="container-fluid flex items-center gap-4">
+                <a class="font-bold text-2xl text-sky-100" asp-area="" asp-controller="Home" asp-action="Index">ToDoList</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="text-gray-50 text-2xl" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </div>
+        </nav>
+    </header>
+    <div class="flex justify-center pb-3 ">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted px-4">
+        <div class="container">
+            &copy; 2024 - ToDoList - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
