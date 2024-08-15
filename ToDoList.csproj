@@ -9,10 +9,14 @@
   <ItemGroup>
     <UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
     <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0" />
   </ItemGroup>  
 
   <Target Name="Tailwind" BeforeTargets="Build">
-    <Exec Command="npm run css:build"/>
+    <Exec Command="npm run css:build" />
   </Target>
 
 </Project>
