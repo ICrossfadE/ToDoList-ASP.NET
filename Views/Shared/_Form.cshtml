@@ -5,8 +5,8 @@
         <div asp-validation-summary="All"></div>
         <Label asp-for="ToDo.Name"></Label>
         <input asp-for="ToDo.Id" type="hidden"/>
-        <input asp-for="ToDo.Name" class="bg-zinc-200"/>
+        <input asp-for="ToDo.Name" class="bg-zinc-200 rounded-md pl-1"/>
         <span asp-validation-for="ToDo.Name" ></span>
     </div>
-    <input type="submit" id="form-button" value="Add ToDO" class="bg-green-500 px-2 py-2 font-bold"/>
+    <input type="submit" id="form-button" value="Add ToDO" class="bg-green-500 px-2 py-2 font-bold rounded-md"/>
 </form>

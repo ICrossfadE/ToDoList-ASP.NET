@@ -21,49 +21,117 @@ public class HomeController : Controller
     }
 
     internal TodoViewModel GetAllTodos()
-{
-    List<ToDo> todoList = [];
-
-    using SqliteConnection connection = new("Data Source=db.sqlite");
-    using var tableCmd = connection.CreateCommand();
-    connection.Open();
-    tableCmd.CommandText = "SELECT * FROM todo";
-
-    using var reader = tableCmd.ExecuteReader();
-    if (reader.HasRows)
     {
-        while (reader.Read())
+        List<ToDo> todoList = [];
+
+        using SqliteConnection connection = new("Data Source=db.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+        tableCmd.CommandText = "SELECT * FROM todo";
+
+        using var reader = tableCmd.ExecuteReader();
+        if (reader.HasRows)
         {
-            todoList.Add(
-                new ToDo
+            while (reader.Read())
+            {
+                todoList.Add(
+                    new ToDo
+                    {
+                        Id = reader.GetInt32(0),
+                        Name = reader.GetString(1)
+                    }
+                );
+            }
+        }
+
+        return new TodoViewModel
+        {
+            TodoList = todoList
+        };
+    }
+
+    internal ToDo GetById(int id)
+    {
+        ToDo todo = new();
+
+        using SqliteConnection connection = new("Data Source=db.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+        tableCmd.CommandText = "SELECT * FROM todo WHERE Id = @id";
+        tableCmd.Parameters.AddWithValue("@id", id);
+
+        using var reader = tableCmd.ExecuteReader();
+        if (reader.HasRows)
+        {
+            while (reader.Read())
+            {
+                todo = new ToDo
                 {
                     Id = reader.GetInt32(0),
                     Name = reader.GetString(1)
-                }
-            );
+                };
+            }
         }
+
+        return todo;
     }
 
-    return new TodoViewModel
+
+    [HttpGet]
+    public JsonResult UpdateForm(int id)
     {
-        TodoList = todoList
-    };
-}
+        var todo = GetById(id);
+        return Json(todo);
+    }
 
 
-    public void Insert(ToDo todo)
+    public RedirectResult Insert(ToDo todo)
+    
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
         connection.Open();
         tableCmd.CommandText = $"INSERT INTO todo (name) VALUES ('{todo.Name}')";
         try
-        {
-            tableCmd.ExecuteNonQuery();
-        }
+            {
+                tableCmd.ExecuteNonQuery();
+            }
         catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        return Redirect("http://localhost:5248");
+    }
+
+    [HttpPost]
+    public JsonResult Delete(int id)
+    {
+        using SqliteConnection connection = new("Data Source=db.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+        tableCmd.CommandText = "DELETE FROM todo WHERE Id = @id";
+        tableCmd.Parameters.AddWithValue("@id", id);
+        tableCmd.ExecuteNonQuery();
+
+        return Json(new {});
+    }
+    
+    public RedirectResult Update(ToDo todo)
+    {
+        using SqliteConnection connection = new("Data Source=db.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+        tableCmd.CommandText = $"UPDATE todo SET Name = '{todo.Name}' WHERE Id = '{todo.Id}'";
+        try
+            {
+                tableCmd.ExecuteNonQuery();
+            }
+        catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        return Redirect("http://localhost:5248");
     }
 }

@@ -20,18 +20,19 @@
             </div>
         </nav>
     </header>
-    <div class="flex justify-center pb-3 ">
-        <partial name="_Form" />
+    <div class="flex justify-center pb-3 gap-4 min-h-full">
+        <partial name="_Form"/>
         <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted px-4">
+    <footer class="border-top footer text-muted px-4 bg-slate-900 text-gray-50">
         <div class="container">
             &copy; 2024 - ToDoList - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
