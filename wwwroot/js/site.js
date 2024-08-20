@@ -28,7 +28,7 @@ function updateTodo(id) {
             $("#form-button").val("Update Todo");
             $("#form-action").attr("action", "/Home/Update");
         },
-        error: function(xhr, status, error) {
+        error: function(error) {
             console.error('Error:', error);
         }
     });

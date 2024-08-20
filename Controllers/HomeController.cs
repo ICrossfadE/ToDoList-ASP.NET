@@ -20,9 +20,9 @@ public class HomeController : Controller
         return View(todoList);
     }
 
-    internal TodoViewModel GetAllTodos()
+    public TodoViewModel GetAllTodos()
     {
-        List<ToDo> todoList = [];
+        List<ToDoModel> todoList = [];
 
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
@@ -35,7 +35,7 @@ public class HomeController : Controller
             while (reader.Read())
             {
                 todoList.Add(
-                    new ToDo
+                    new ToDoModel
                     {
                         Id = reader.GetInt32(0),
                         Name = reader.GetString(1)
@@ -50,9 +50,9 @@ public class HomeController : Controller
         };
     }
 
-    internal ToDo GetById(int id)
+    public ToDoModel GetById(int id)
     {
-        ToDo todo = new();
+        ToDoModel todo = new();
 
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
@@ -65,7 +65,7 @@ public class HomeController : Controller
         {
             while (reader.Read())
             {
-                todo = new ToDo
+                todo = new ToDoModel
                 {
                     Id = reader.GetInt32(0),
                     Name = reader.GetString(1)
@@ -85,7 +85,7 @@ public class HomeController : Controller
     }
 
 
-    public RedirectResult Insert(ToDo todo)
+    public RedirectResult Insert(ToDoModel todo)
     
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
@@ -117,7 +117,7 @@ public class HomeController : Controller
         return Json(new {});
     }
     
-    public RedirectResult Update(ToDo todo)
+    public RedirectResult Update(ToDoModel todo)
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
