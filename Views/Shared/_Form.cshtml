@@ -2,11 +2,11 @@
 
 <form asp-action="Insert" id="form-action" method="post" role="form" class="flex flex-col gap-2">
     <div>
-        @* <div asp-validation-summary="All"></div>
+         <div asp-validation-summary="All"></div>
         <Label asp-for="Name"></Label>
         <input asp-for="Id" type="hidden"/>
         <input asp-for="Name" class="bg-zinc-200 rounded-md pl-1"/>
-        <span asp-validation-for="Name" ></span> *@
-    </div>
+        <span asp-validation-for="Name" ></span>
+     </div>
     <input type="submit" id="form-button" value="Add ToDO" class="bg-green-500 px-2 py-2 font-bold rounded-md"/>
 </form>

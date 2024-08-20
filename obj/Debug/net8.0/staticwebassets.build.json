@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lHZ5KtUdYi/RulhtqdmrQ1j++PNBU5mrxRJfpV6j6+8=",
+  "Hash": "oHQNYS/I6x1Z/oNqUUOCSbBaFA9rFUVaEGe+JBqsaeU=",
   "Source": "ToDoList",
   "BasePath": "_content/ToDoList",
   "Mode": "Default",
@@ -131,12 +131,12 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "ToDoList",
       "SourceType": "Discovered",
       "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
       "BasePath": "_content/ToDoList",
-      "RelativePath": "lib/jquery/dist/jquery.js",
+      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -147,15 +147,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "ToDoList",
       "SourceType": "Discovered",
       "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
       "BasePath": "_content/ToDoList",
-      "RelativePath": "lib/jquery/dist/jquery.min.js",
+      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -166,15 +166,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "ToDoList",
       "SourceType": "Discovered",
       "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
       "BasePath": "_content/ToDoList",
-      "RelativePath": "lib/jquery/dist/jquery.min.map",
+      "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -185,26 +185,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
-    },
-    {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\LICENSE.txt",
-      "SourceId": "ToDoList",
-      "SourceType": "Discovered",
-      "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
-      "BasePath": "_content/ToDoList",
-      "RelativePath": "lib/jquery/LICENSE.txt",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
       "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
@@ -302,12 +283,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "ToDoList",
       "SourceType": "Discovered",
       "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
       "BasePath": "_content/ToDoList",
-      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -318,15 +299,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "ToDoList",
       "SourceType": "Discovered",
       "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
       "BasePath": "_content/ToDoList",
-      "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -337,15 +318,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "ToDoList",
       "SourceType": "Discovered",
       "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
       "BasePath": "_content/ToDoList",
-      "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -356,7 +337,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "SourceId": "ToDoList",
+      "SourceType": "Discovered",
+      "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
+      "BasePath": "_content/ToDoList",
+      "RelativePath": "lib/jquery/LICENSE.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     }
   ]
 }

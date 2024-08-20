@@ -35,6 +35,7 @@ public class HomeController : Controller
             while (reader.Read())
             {
                 todoList.Add(
+                    
                     new ToDoModel
                     {
                         Id = reader.GetInt32(0),
@@ -104,7 +105,7 @@ public class HomeController : Controller
         return Redirect("http://localhost:5248");
     }
 
-    [HttpPost]
+    [HttpDelete]
     public JsonResult Delete(int id)
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
@@ -117,6 +118,7 @@ public class HomeController : Controller
         return Json(new {});
     }
     
+    [HttpPost]
     public RedirectResult Update(ToDoModel todo)
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
