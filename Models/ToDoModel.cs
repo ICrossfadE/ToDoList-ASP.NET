@@ -6,7 +6,7 @@ public class ToDoModel
 
     public string Name { get; set; }
 
-    // public string Description { get; set; }
+    public string Description { get; set; }
 }
 
 // Два методи в контролері Edit - HttpPOSt HttpGEt
