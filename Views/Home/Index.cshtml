@@ -1,26 +1,19 @@
 ﻿@model TodoViewModel
 
-@{
-//    ViewData["Title"] = "Form Page";
-}
-
 <div>
     <table>
         <tbody class="flex flex-col gap-2 ">
             @foreach (var tab in Model.TodoList)
             {
-                <tr class="flex justify-around bg-gray-400  px-2 py-2 rounded-md">
-                    @* <th scope="row">@tab.Id</th> *@
+                <tr class="flex justify-around bg-gray-300  px-2 py-2 rounded-md">
                     <th class="mr-5">@tab.Name</th>
 
                     <td class="flex gap-2">
-                          <input type="submit" value="Update" onclick="updateTodo(@tab.Id)" class="flex bg-cyan-600 text-gray-50 rounded-md hover:cursor-pointer px-2 py-1"> 
+                        <input type="submit" value="Update" onclick="updateTodo(@tab.Id)" class="flex bg-cyan-600 text-gray-50 rounded-md hover:cursor-pointer px-2 py-1"> 
                         <input type="submit" value="Delete" onclick="deleteTodo(@tab.Id)" class="flex bg-red-600 text-gray-50 rounded-md hover:cursor-pointer px-2 py-1"> 
                     </td>
                 </tr>
             } 
         </tbody>
     </table>
-
-    <button type="submit" class="bg-green-500 px-2 py-2 font-bold rounded-md">Add Todo</button>
 </div>

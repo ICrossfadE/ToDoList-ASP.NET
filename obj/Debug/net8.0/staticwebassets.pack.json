@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\functions.js",
+      "PackagePath": "staticwebassets\\js\\functions.js"
+    },
+    {
+      "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\script.js",
+      "PackagePath": "staticwebassets\\js\\script.js"
+    },
+    {
       "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

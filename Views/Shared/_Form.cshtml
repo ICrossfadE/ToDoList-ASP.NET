@@ -1,6 +1,60 @@
-@model ToDoModel
+<div class="max-w-2xl mx-auto">
+    <button id="add-button" class="block text-white bg-green-500 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700" type="button" data-modal-toggle="default-modal">
+        Add Todo
+    </button>
 
-<form asp-action="Insert" id="form-action" method="post" role="form" class="flex flex-col gap-2">
+    <div id="default-modal" data-modal-show="true" aria-hidden="false" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal mx-auto  top-60 left-1/2 transform -translate-x-1/2 z-50 justify-center items-center"
+>
+        <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
+            <!-- Modal content -->
+            <div class="bg-slate-200 rounded-lg shadow relative dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
+                        New Todo
+                    </h3>
+                    <button id="cancel-button" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="default-modal">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <p class="text-gray-500 text-base leading-relaxed dark:text-gray-400">
+                        With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                    </p>
+                    <p class="text-gray-500 text-base leading-relaxed dark:text-gray-400">
+                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                    </p>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex space-x-2 items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button id='create-button' class="block text-white bg-green-500 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700" type="button" data-modal-toggle="default-modal">
+                        Create Todo
+                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model ToDoModel *@
+
+@* <form asp-action="Insert" id="form-action" method="post" role="form" class="flex flex-col gap-2">
     <div>
          <div asp-validation-summary="All"></div>
         <Label asp-for="Name"></Label>
@@ -9,4 +63,4 @@
         <span asp-validation-for="Name" ></span>
      </div>
     <input type="submit" id="form-button" value="Add ToDO" class="bg-green-500 px-2 py-2 font-bold rounded-md"/>
-</form>
+</form> *@
