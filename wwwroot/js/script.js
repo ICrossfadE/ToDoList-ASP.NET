@@ -25,10 +25,8 @@ createButtont.addEventListener('click', (event) => {
 function showModalWindow(elem) {
     elem.classList.remove('hidden');
     elem.classList.add('active');
-    console.log("show");
 }
 function hideModalWindow(elem) {
     elem.classList.remove('active');
     elem.classList.add('hidden');
-    console.log("hide");
 }

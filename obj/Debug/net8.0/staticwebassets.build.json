@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jxx9pSQ5QVDRk+kp3vk4PM9kEXDeZODJExDjtpONLu8=",
+  "Hash": "5LzvhuLvtpGpc0fpSoh8lEu7U2plOfStR7miROTPQcQ=",
   "Source": "ToDoList",
   "BasePath": "_content/ToDoList",
   "Mode": "Default",
@@ -110,25 +110,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\functions.js",
-      "SourceId": "ToDoList",
-      "SourceType": "Discovered",
-      "ContentRoot": "M:\\Projects\\NET\\ToDoList\\wwwroot\\",
-      "BasePath": "_content/ToDoList",
-      "RelativePath": "js/functions.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\functions.js"
     },
     {
       "Identity": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\script.js",

@@ -87,24 +87,29 @@ public class HomeController : Controller
 
 
     [HttpPost]
-    public RedirectResult Insert(ToDoModel todo)
-    
+    public IActionResult Insert(ToDoModel todo)
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
         connection.Open();
-        tableCmd.CommandText = $"INSERT INTO todo (name) VALUES ('{todo.Name}')";
+        tableCmd.CommandText = "INSERT INTO todo (name, description) VALUES (@name, @description)";
+        
+        tableCmd.Parameters.AddWithValue("@name", todo.Name);
+        tableCmd.Parameters.AddWithValue("@description", todo.Description);
+
         try
-            {
-                tableCmd.ExecuteNonQuery();
-            }
+        {
+            tableCmd.ExecuteNonQuery();
+        }
         catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+        {
+            Console.WriteLine(ex.Message);
+            return StatusCode(500, "Internal server error");
+        }
 
         return Redirect("http://localhost:5248");
     }
+
 
     [HttpDelete]
     public JsonResult Delete(int id)
