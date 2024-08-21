@@ -2,7 +2,7 @@
 {
     $.ajax({
         url: 'Home/Delete',
-        type: 'POST',
+        type: 'DELETE',
         data: {
             id: id
         },
@@ -16,7 +16,7 @@
 function updateTodo(id) {
 
     $.ajax({
-        url: 'Home/UpdateForm',
+        url: 'Home/UpdateTodo',
         type: 'GET',
         data: {
             id: id
@@ -26,7 +26,7 @@ function updateTodo(id) {
             $("#ToDo_Name").val(response.name);
             $("#ToDo_Id").val(response.id);
             $("#form-button").val("Update Todo");
-            $("#form-action").attr("action", "/Home/Update");
+            $("#form-action").attr("action", "/Home/UpdateDatabase");
         },
         error: function(error) {
             console.error('Error:', error);

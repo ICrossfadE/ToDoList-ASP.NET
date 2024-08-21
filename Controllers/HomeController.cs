@@ -120,7 +120,7 @@ public class HomeController : Controller
     }
     
     [HttpPost]
-    public RedirectResult Update(ToDoModel todo)
+    public RedirectResult UpdateDatabase(ToDoModel todo)
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
