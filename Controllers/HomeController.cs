@@ -20,7 +20,7 @@ public class HomeController : Controller
         return View(todoList);
     }
 
-    public TodoViewModel GetAllTodos()
+    public AllTodoListModel GetAllTodos()
     {
         List<ToDoModel> todoList = [];
 
@@ -45,7 +45,7 @@ public class HomeController : Controller
             }
         }
 
-        return new TodoViewModel
+        return new AllTodoListModel
         {
             TodoList = todoList
         };
@@ -79,13 +79,14 @@ public class HomeController : Controller
 
 
     [HttpGet]
-    public JsonResult UpdateForm(int id)
+    public JsonResult UpdateTodo(int id)
     {
         var todo = GetById(id);
         return Json(todo);
     }
 
 
+    [HttpPost]
     public RedirectResult Insert(ToDoModel todo)
     
     {

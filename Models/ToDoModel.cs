@@ -10,7 +10,3 @@ public class ToDoModel
 }
 
 // Два методи в контролері Edit - HttpPOSt HttpGEt
-// Попап
-// 
-// Почитати про RazerPage
-// 

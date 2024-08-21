@@ -1,7 +1,6 @@
 namespace ToDoList.Models;
 
-public class TodoViewModel
+public class AllTodoListModel
 {
     public List<ToDoModel> TodoList { get; set; }
-
 }
