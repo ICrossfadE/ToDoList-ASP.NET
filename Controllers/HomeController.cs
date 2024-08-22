@@ -95,6 +95,7 @@ public class HomeController : Controller
 
         if(todo.Id != 0) 
         {
+            // Update
             tableCmd.CommandText = $"UPDATE todo SET Name = @name, Description = @description WHERE Id = @id";
             tableCmd.Parameters.AddWithValue("@name", todo.Name);
             tableCmd.Parameters.AddWithValue("@description", todo.Description);
@@ -102,6 +103,7 @@ public class HomeController : Controller
         } 
         else 
         {
+            // Create
             tableCmd.CommandText = "INSERT INTO todo (name, description) VALUES (@name, @description)";
             tableCmd.Parameters.AddWithValue("@name", todo.Name);
             tableCmd.Parameters.AddWithValue("@description", todo.Description);
@@ -133,23 +135,4 @@ public class HomeController : Controller
 
         return Json(new {});
     }
-    
-    // [HttpPost]
-    // public RedirectResult UpdateDatabase(ToDoModel todo)
-    // {
-    //     using SqliteConnection connection = new("Data Source=db.sqlite");
-    //     using var tableCmd = connection.CreateCommand();
-    //     connection.Open();
-    //     tableCmd.CommandText = $"UPDATE todo SET Name = '{todo.Name}' WHERE Id = '{todo.Id}'";
-    //     try
-    //         {
-    //             tableCmd.ExecuteNonQuery();
-    //         }
-    //     catch (Exception ex)
-    //         {
-    //             Console.WriteLine(ex.Message);
-    //         }
-
-    //     return Redirect("http://localhost:5248");
-    // }
 }
