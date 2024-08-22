@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ToDoList</title>
+    <title>@ViewData["Title"]ToDoList</title>
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ToDoList.styles.css" asp-append-version="true" />
 </head>
@@ -20,9 +20,9 @@
             </div>
         </nav>
     </header>
-    <div class="flex flex-col items-center justify-center pb-3 gap-4 min-h-full">
+    <div class="flex flex-col items-center mx-auto pb-3 gap-4 min-h-full w-96">
         <partial name="_Form" />
-        <main role="main">
+        <main role="main" class="min-w-full">
             @RenderBody()
         </main>
     </div>

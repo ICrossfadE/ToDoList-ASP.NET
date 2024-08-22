@@ -1,19 +1,25 @@
 ﻿@model AllTodoListModel
 
-<div>
-    <table>
-        <tbody class="flex flex-col gap-2 ">
-            @foreach (var tab in Model.TodoList)
+<div class="min-w-full">
+   <div class="flex flex-col gap-2">
+            @foreach (var info in Model.TodoList)
             {
-                <tr class="flex justify-around bg-gray-300  px-2 py-2 rounded-md">
-                    <th class="mr-5">@tab.Name</th>
+                <div class="flex flex-col bg-slate-200 py-4 rounded-md">
+                    <div class="flex justify-start gap-1 font-bold border-b-2 border-gray-300 py-2 px-4">
+                        <span>@info.Id</span>
+                        <span>@info.Name</span>
+                    </div>
 
-                    <td class="flex gap-2">
-                        <input type="submit" value="Update" onclick="updateTodo(@tab.Id)" class="flex bg-cyan-600 text-gray-50 rounded-md hover:cursor-pointer px-2 py-1"> 
-                        <input type="submit" value="Delete" onclick="deleteTodo(@tab.Id)" class="flex bg-red-600 text-gray-50 rounded-md hover:cursor-pointer px-2 py-1"> 
-                    </td>
-                </tr>
+                    <div class="py-2">
+                        <span class="px-4">@info.Description</span>
+                        <p class="px-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum explicabo veritatis quae dicta architecto pariatur magnam suscipit ipsam dolores! Nemo unde beatae id consequatur voluptas, fugiat asperiores voluptatibus enim velit.</p>
+                    </div>
+
+                    <div class="flex gap-2 justify-end border-t-2 border-gray-300 py-2 px-4">
+                        <input id="edit" type="submit" value="Edit" onclick="updateTodo(@info.Id)" class="flex px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                        <input id="delete" type="submit" value="Delete" onclick="deleteTodo(@info.Id)" class="flex px-4 py-2 bg-red-600 hover:bg-red-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                    </div>
+                </div>
             } 
-        </tbody>
-    </table>
+    </div>
 </div>
