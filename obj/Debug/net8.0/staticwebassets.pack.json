@@ -17,12 +17,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\script.js",
-      "PackagePath": "staticwebassets\\js\\script.js"
-    },
-    {
       "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\view1.js",
+      "PackagePath": "staticwebassets\\js\\view1.js"
+    },
+    {
+      "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\view2.js",
+      "PackagePath": "staticwebassets\\js\\view2.js"
     },
     {
       "Id": "M:\\Projects\\NET\\ToDoList\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",

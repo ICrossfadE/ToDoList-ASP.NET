@@ -8,5 +8,5 @@ public class ToDoModel
 
     public string Description { get; set; }
 
-    public string Status { get; set; }
+    public int StatusId { get; set; }
 }

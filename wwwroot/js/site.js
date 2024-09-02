@@ -10,7 +10,7 @@ function createTodo()
         url: 'Home/Insert',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({ Id: todoId, Name: name, Description: description, Status: status }),
+        data: JSON.stringify({ Id: todoId, Name: name, Description: description, StatusId: status }),
         success: function(response) {
             window.location.reload();
             console.log('Todo created:', response);

@@ -41,7 +41,7 @@ public class HomeController : Controller
                         Id = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
-                        Status = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
+                        // StatusId = reader.GetInt32(3),
                     }
                 );
             }
@@ -98,20 +98,20 @@ public class HomeController : Controller
 
         if(todo.Id != 0) 
         {
-            // Update
-            tableCmd.CommandText = "UPDATE todo SET Name = @name, Description = @description, Status = @status WHERE Id = @id";
-            tableCmd.Parameters.AddWithValue("@id", todo.Id);
-            tableCmd.Parameters.AddWithValue("@name", todo.Name);
-            tableCmd.Parameters.AddWithValue("@description", todo.Description);
-            tableCmd.Parameters.AddWithValue("@status", todo.Status ?? "");
+        // Update
+        tableCmd.CommandText = "UPDATE todo SET Name = @name, Description = @description, StatusId = @statusId WHERE Id = @id";
+        tableCmd.Parameters.AddWithValue("@id", todo.Id);
+        tableCmd.Parameters.AddWithValue("@name", todo.Name);
+        tableCmd.Parameters.AddWithValue("@description", todo.Description);
+        tableCmd.Parameters.AddWithValue("@statusId", todo.StatusId);
         }
         else
         {
             // Create
-            tableCmd.CommandText = "INSERT INTO todo (Name, Description, Status) VALUES (@name, @description, @status)";
+            tableCmd.CommandText = "INSERT INTO todo (Name, Description, StatusId) VALUES (@name, @description, @statusId)";
             tableCmd.Parameters.AddWithValue("@name", todo.Name);
             tableCmd.Parameters.AddWithValue("@description", todo.Description);
-            tableCmd.Parameters.AddWithValue("@status", todo.Status ?? "");
+            tableCmd.Parameters.AddWithValue("@statusId", todo.StatusId);
         }
 
         try
@@ -127,28 +127,28 @@ public class HomeController : Controller
         return Redirect("http://localhost:5248");
     }
 
-    [HttpPost]
-    public IActionResult SetStatus([FromBody] ToDoModel todo) 
-    {
+    // [HttpPost]
+    // public IActionResult SetStatusId([FromBody] ToDoModel todo) 
+    // {
 
-        using SqliteConnection connection = new("Data Source=db.sqlite");
-        using var tableCmd = connection.CreateCommand();
-        connection.Open();
+    //     using SqliteConnection connection = new("Data Source=db.sqlite");
+    //     using var tableCmd = connection.CreateCommand();
+    //     connection.Open();
 
-        tableCmd.CommandText = "UPDATE todo SET Status = @status WHERE Id = @id";
-        tableCmd.Parameters.AddWithValue("@id", todo.Id);
-        tableCmd.Parameters.AddWithValue("@status", todo.Status);
+    //     tableCmd.CommandText = "UPDATE todo SET StatusId = @StatusId WHERE Id = @id";
+    //     tableCmd.Parameters.AddWithValue("@id", todo.Id);
+    //     tableCmd.Parameters.AddWithValue("@StatusId", todo.StatusIdId);
 
-        try
-            {
-                tableCmd.ExecuteNonQuery();
-            }
-        catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        return Ok();
-    }
+    //     try
+    //         {
+    //             tableCmd.ExecuteNonQuery();
+    //         }
+    //     catch (Exception ex)
+    //         {
+    //             Console.WriteLine(ex.Message);
+    //         }
+    //     return Ok();
+    // }
 
 
     [HttpDelete]

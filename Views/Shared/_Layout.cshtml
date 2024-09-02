@@ -16,12 +16,12 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="text-gray-50 text-2xl" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="bg-green-500 hover:bg-green-600 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Home" asp-action="Index">ToDo List</a>
+                <a class="bg-indigo-500 hover:bg-indigo-600 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Status" asp-action="Index">Statuses</a>
             </div>
         </nav>
     </header>
     <div class="flex flex-col items-center mx-auto pb-3 gap-4 min-h-full w-96">
-        <partial name="_Form" />
         <main role="main" class="min-w-full">
             @RenderBody()
         </main>
@@ -32,7 +32,8 @@
             &copy; 2024 - ToDoList - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/js/script.js"></script>
+    <script src="~/js/view1.js" defer></script>
+    <script src="~/js/view2.js" defer></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
