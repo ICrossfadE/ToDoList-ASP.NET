@@ -4,7 +4,7 @@
    <div class="flex flex-col gap-2">
             @foreach (var info in Model.TodoList)
             {
-                <div class="flex flex-col bg-slate-200 py-4 rounded-md">
+                <div class="flex flex-col bg-slate-200 py-2 rounded-md">
                     <div class="flex justify-start gap-1 font-bold border-b-2 border-gray-300 py-2 px-4">
                         <span>@info.Id</span>
                         <span>@info.Name</span>
@@ -12,12 +12,20 @@
 
                     <div class="py-2">
                         <span class="px-4">@info.Description</span>
-                        <p class="px-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum explicabo veritatis quae dicta architecto pariatur magnam suscipit ipsam dolores! Nemo unde beatae id consequatur voluptas, fugiat asperiores voluptatibus enim velit.</p>
                     </div>
 
-                    <div class="flex gap-2 justify-end border-t-2 border-gray-300 py-2 px-4">
-                        <input id="edit" type="submit" value="Edit" onclick="updateTodo(@info.Id)" class="flex px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-gray-50 rounded-md hover:cursor-pointer "> 
-                        <input id="delete" type="submit" value="Delete" onclick="deleteTodo(@info.Id)" class="flex px-4 py-2 bg-red-600 hover:bg-red-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                    <div class="flex gap-2 justify-between border-t-2 border-gray-300 py-2 px-4">
+                        <select id="todo-status" onchange="setStatus(@info.Id)" class="py-1 px-1 block w-36 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                            <option selected>@info.Status</option>
+                            <option value="Done" class="option-item bg-green-100 text-green-800 text-sm font-medium dark:bg-green-900 dark:text-green-300">Done</option>
+                            <option value="Progres" class="option-item bg-yellow-100 text-yellow-800 text-sm font-medium dark:bg-yellow-900 dark:text-yellow-300">Progres</option>
+                            <option value="To do" class="option-item bg-blue-100 text-blue-800 text-sm font-medium dark:bg-blue-900 dark:text-blue-300">To do</option>
+                        </select>
+
+                        <div class="flex gap-2">
+                            <input id="edit" type="submit" value="Edit" onclick="updateTodo(@info.Id)" class="flex px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                            <input id="delete" type="submit" value="Delete" onclick="deleteTodo(@info.Id)" class="flex px-4 py-2 bg-red-600 hover:bg-red-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                       </div>
                     </div>
                 </div>
             } 

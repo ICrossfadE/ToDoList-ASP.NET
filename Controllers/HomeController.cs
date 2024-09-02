@@ -39,7 +39,9 @@ public class HomeController : Controller
                     new ToDoModel
                     {
                         Id = reader.GetInt32(0),
-                        Name = reader.GetString(1)
+                        Name = reader.GetString(1),
+                        Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
+                        Status = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
                     }
                 );
             }
@@ -69,7 +71,8 @@ public class HomeController : Controller
                 todo = new ToDoModel
                 {
                     Id = reader.GetInt32(0),
-                    Name = reader.GetString(1)
+                    Name = reader.GetString(1),
+                    Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
                 };
             }
         }
@@ -96,17 +99,19 @@ public class HomeController : Controller
         if(todo.Id != 0) 
         {
             // Update
-            tableCmd.CommandText = $"UPDATE todo SET Name = @name, Description = @description WHERE Id = @id";
+            tableCmd.CommandText = "UPDATE todo SET Name = @name, Description = @description, Status = @status WHERE Id = @id";
+            tableCmd.Parameters.AddWithValue("@id", todo.Id);
             tableCmd.Parameters.AddWithValue("@name", todo.Name);
             tableCmd.Parameters.AddWithValue("@description", todo.Description);
-            tableCmd.Parameters.AddWithValue("@id", todo.Id);
-        } 
-        else 
+            tableCmd.Parameters.AddWithValue("@status", todo.Status ?? "");
+        }
+        else
         {
             // Create
-            tableCmd.CommandText = "INSERT INTO todo (name, description) VALUES (@name, @description)";
+            tableCmd.CommandText = "INSERT INTO todo (Name, Description, Status) VALUES (@name, @description, @status)";
             tableCmd.Parameters.AddWithValue("@name", todo.Name);
             tableCmd.Parameters.AddWithValue("@description", todo.Description);
+            tableCmd.Parameters.AddWithValue("@status", todo.Status ?? "");
         }
 
         try
@@ -120,6 +125,29 @@ public class HomeController : Controller
         }
 
         return Redirect("http://localhost:5248");
+    }
+
+    [HttpPost]
+    public IActionResult SetStatus([FromBody] ToDoModel todo) 
+    {
+
+        using SqliteConnection connection = new("Data Source=db.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+
+        tableCmd.CommandText = "UPDATE todo SET Status = @status WHERE Id = @id";
+        tableCmd.Parameters.AddWithValue("@id", todo.Id);
+        tableCmd.Parameters.AddWithValue("@status", todo.Status);
+
+        try
+            {
+                tableCmd.ExecuteNonQuery();
+            }
+        catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        return Ok();
     }
 
 
