@@ -98,12 +98,12 @@ public class HomeController : Controller
 
         if(todo.Id != 0) 
         {
-        // Update
-        tableCmd.CommandText = "UPDATE todo SET Name = @name, Description = @description, StatusId = @statusId WHERE Id = @id";
-        tableCmd.Parameters.AddWithValue("@id", todo.Id);
-        tableCmd.Parameters.AddWithValue("@name", todo.Name);
-        tableCmd.Parameters.AddWithValue("@description", todo.Description);
-        tableCmd.Parameters.AddWithValue("@statusId", todo.StatusId);
+            // Update
+            tableCmd.CommandText = "UPDATE todo SET Name = @name, Description = @description, StatusId = @statusId WHERE Id = @id";
+            tableCmd.Parameters.AddWithValue("@id", todo.Id);
+            tableCmd.Parameters.AddWithValue("@name", todo.Name);
+            tableCmd.Parameters.AddWithValue("@description", todo.Description);
+            tableCmd.Parameters.AddWithValue("@statusId", todo.StatusId);
         }
         else
         {

@@ -37,6 +37,7 @@ function createStatus()
     });
 }
 
+// Todo
 function updateTodo(id) 
 {
 
@@ -54,7 +55,7 @@ function updateTodo(id)
             $("#form-textarea").val(response.description);
 
             // Show modal
-            document.getElementById('default-modal').showModal(); // Використання методу showModal() для показу
+            document.getElementById('default-modal').showModal();
 
             //Edit Button
             $("#create-button").text("Edit Todo");
@@ -62,6 +63,37 @@ function updateTodo(id)
             $("#create-button").removeClass("hover:bg-green-600");
             $("#create-button").addClass("bg-cyan-600");
             $("#create-button").addClass("hover:bg-cyan-700");
+        },
+        error: function(error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+// Status
+function updateStatus(id) 
+{
+    $.ajax({
+        url: 'Status/UpdateStatus',
+        type: 'GET',
+        data: {
+            id: id
+        },
+        dataType: 'json',
+        success: function (response) {
+             statusId = response.id;
+             console.log('Response:', response);
+            $("#form-status-input").val(response.name);
+
+            // Show modal
+            document.getElementById('default-modal-status').showModal();
+
+            //Edit Button
+            $("#create-status-button").text("Edit Todo");
+            $("#create-status-button").removeClass("bg-green-500");
+            $("#create-status-button").removeClass("hover:bg-green-600");
+            $("#create-status-button").addClass("bg-cyan-600");
+            $("#create-status-button").addClass("hover:bg-cyan-700");
         },
         error: function(error) {
             console.error('Error:', error);

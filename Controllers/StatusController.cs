@@ -82,7 +82,38 @@ public class StatusController : Controller
         return Redirect("http://localhost:5248");
     }
 
+    public StatusModel GetById(int id)
+    {
+        StatusModel statusItem = new();
 
+        using SqliteConnection connection = new("Data Source=statuses.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+        tableCmd.CommandText = "SELECT * FROM todoStatus WHERE Id = @id";
+        tableCmd.Parameters.AddWithValue("@id", id);
+
+        using var reader = tableCmd.ExecuteReader();
+        if (reader.HasRows)
+        {
+            while (reader.Read())
+            {
+                statusItem = new StatusModel
+                {
+                    Id = reader.GetInt32(0),
+                    StatusName = reader.GetString(1),
+                };
+            }
+        }
+
+        return statusItem;
+    }
+
+    [HttpGet]
+    public JsonResult UpdateStatus(int id)
+    {
+        var statusItem = GetById(id);
+        return Json(statusItem);
+    }
 
     [HttpDelete]
     public JsonResult Delete(int id)
