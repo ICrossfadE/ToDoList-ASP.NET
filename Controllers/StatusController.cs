@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 
 public class StatusController : Controller
 {
@@ -12,6 +13,73 @@ public class StatusController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var statusList = GetAllStatus();
+        return View(statusList);
     }
+
+    public AllStatusLitsModel GetAllStatus()
+    {
+        List<StatusModel> statusList = [];
+
+        using SqliteConnection connection = new("Data Source=statuses.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+        tableCmd.CommandText = "SELECT * FROM todoStatus";
+
+        using var reader = tableCmd.ExecuteReader();
+        if (reader.HasRows)
+        {
+            while (reader.Read())
+            {
+               statusList.Add(
+                    
+                    new StatusModel
+                    {
+                        Id = reader.GetInt32(0),
+                        StatusName = reader.GetString(1),
+                    }
+                );
+            }
+        }
+
+        return new AllStatusLitsModel
+        {
+            StatusList = statusList
+        };
+    }
+
+    [HttpPost]
+    public IActionResult Insert([FromBody] StatusModel statusItem)
+    {
+        using SqliteConnection connection = new("Data Source=statuses.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+
+        if(statusItem.Id != 0) 
+        {
+            // Update
+            tableCmd.CommandText = "UPDATE todoStatus SET StatusName = @name WHERE Id = @id";
+            tableCmd.Parameters.AddWithValue("@id", statusItem.Id);
+            tableCmd.Parameters.AddWithValue("@name", statusItem.StatusName);
+        }
+        else
+        {
+            // Create
+            tableCmd.CommandText = "INSERT INTO todoStatus (StatusName) VALUES (@name)";
+            tableCmd.Parameters.AddWithValue("@name", statusItem.StatusName);
+        }
+
+        try
+        {
+            tableCmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return StatusCode(500, "Internal server error");
+        }
+
+        return Redirect("http://localhost:5248");
+    }
+
 }

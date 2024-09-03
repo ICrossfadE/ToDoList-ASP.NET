@@ -3,7 +3,7 @@ const cancelButtont = document.getElementById('cancel-button');
 const createButtont = document.getElementById('create-button');
 const dialogTodo = document.getElementById('default-modal-todo');
 const input = document.getElementById('form-input');
-const textarea = document.getElementById('form-input');
+const textarea = document.getElementById('form-textarea');
 
 // Todo
 addTodo.addEventListener('click', (event) => {

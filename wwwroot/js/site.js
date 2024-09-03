@@ -1,5 +1,7 @@
 ﻿let todoId = 0;
+let statusId = 0;
 
+// Toodo
 function createTodo() 
 {
     const name = document.getElementById('form-input').value;
@@ -14,6 +16,23 @@ function createTodo()
         success: function(response) {
             window.location.reload();
             console.log('Todo created:', response);
+        },
+    });
+}
+
+// Status
+function createStatus() 
+{
+    const name = document.getElementById('form-status-input').value;
+
+    $.ajax({
+        url: 'Status/Insert',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ Id: statusId, StatusName: name }),
+        success: function(response) {
+            window.location.reload();
+            console.log('Status created:', response);
         },
     });
 }
