@@ -82,4 +82,19 @@ public class StatusController : Controller
         return Redirect("http://localhost:5248");
     }
 
+
+
+    [HttpDelete]
+    public JsonResult Delete(int id)
+    {
+        using SqliteConnection connection = new("Data Source=statuses.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+        tableCmd.CommandText = "DELETE FROM todoStatus WHERE Id = @id";
+        tableCmd.Parameters.AddWithValue("@id", id);
+        tableCmd.ExecuteNonQuery();
+
+        return Json(new {});
+    }
+
 }

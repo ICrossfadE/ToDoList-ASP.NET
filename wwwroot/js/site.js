@@ -91,10 +91,27 @@ function setStatus(id)
     });
 }
 
+// Todo
 function deleteTodo(id) 
 {
     $.ajax({
         url: 'Home/Delete',
+        type: 'DELETE',
+        data: {
+            id: id
+        },
+        success: function() {
+            window.location.reload();
+            console.log('del', id);
+        }
+    });
+}
+
+// Status
+function deleteStatus(id) 
+{
+    $.ajax({
+        url: 'Status/Delete',
         type: 'DELETE',
         data: {
             id: id

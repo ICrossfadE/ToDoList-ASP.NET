@@ -39,15 +39,15 @@
             @foreach (var status in Model.StatusList)
             {
                 <div class="flex justify-between bg-slate-200 py-2 rounded-md">
-                    <div class="flex justify-start gap-1 font-bold py-2 px-4">
+                    <div class="flex justify-start gap-1 font-bold py-2 px-2">
                         @* <span>@status.Id</span> *@
                         <span class="font-normal text-gray-400">Status Name:</span>
                         <span>@status.StatusName</span>
                     </div>
 
                     <div class="flex gap-2 px-2">
-                        <input id="edit" type="submit" value="Edit" onclick="updateTodo(@status.Id)" class="flex px-2 py-1 bg-cyan-600 hover:bg-cyan-700 text-gray-50 rounded-md hover:cursor-pointer "> 
-                        <input id="delete" type="submit" value="Delete" onclick="deleteTodo(@status.Id)" class="flex px-2 py-1 bg-red-600 hover:bg-red-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                        <input id="edit" type="submit" value="Edit" onclick="updateStatus(@status.Id)" class="flex px-2 py-1 bg-cyan-600 hover:bg-cyan-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                        <input id="delete" type="submit" value="Delete" onclick="deleteStatus(@status.Id)" class="flex px-2 py-1 bg-red-600 hover:bg-red-700 text-gray-50 rounded-md hover:cursor-pointer "> 
                     </div>   
                 </div>
             } 
