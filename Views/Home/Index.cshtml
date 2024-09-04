@@ -51,11 +51,27 @@
                     </div>
 
                     <div class="flex gap-2 justify-between border-t-2 border-gray-300 py-2 px-4">
-                        <select id="todo-status" onchange="setStatus(@info.Id)" class="py-1 px-1 block w-36 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                            <option selected>@info.StatusId</option>
-                            <option value="Done" class="option-item bg-green-100 text-green-800 text-sm font-medium dark:bg-green-900 dark:text-green-300">Done</option>
-                            <option value="Progres" class="option-item bg-yellow-100 text-yellow-800 text-sm font-medium dark:bg-yellow-900 dark:text-yellow-300">Progres</option>
-                            <option value="To do" class="option-item bg-blue-100 text-blue-800 text-sm font-medium dark:bg-blue-900 dark:text-blue-300">To do</option>
+                        <select id="todo-status-@info.Id" onchange="setStatus(@info.Id)" class="py-1 px-1 block w-36 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                              @if (info.StatusId == 0)
+                                {
+                                    <option value="0" selected>Choose status</option>
+                                }
+                                else
+                                {
+                                    <option value="0">Choose status</option>
+                                }
+
+                                @foreach (var status in Model.StatusList)
+                                {
+                                    if (status.Id == info.StatusId)
+                                    {
+                                        <option value="@status.Id" selected>@status.StatusName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@status.Id">@status.StatusName</option>
+                                    }
+                                }
                         </select>
 
                         <div class="flex gap-2">

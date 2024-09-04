@@ -103,23 +103,21 @@ function updateStatus(id)
 
 function setStatus(id) 
 {
-    var status = $("#todo-status").val();
+    var status = $(`#todo-status-${id}`).val();
+    console.log(`Selected status: ${status}`);
 
     $.ajax({
-        url: 'Home/SetStatus',
+        url: 'Home/SetStatusId',
         type: 'POST',
-        contentType: 'application/json', // Встановіть тип контенту як JSON
+        contentType: 'application/json',
         data: JSON.stringify({
-            id: id,
-            status: status
+            Id: id,
+            StatusId: parseInt(status)
         }),
         dataType: 'json',
         success: function (response) {  
-            console.log("Status updated successfully");
+            console.log(`Status updated successfully ${response}` );
         },
-        error: function(error) {
-            console.error('Error:', error);
-        }
     });
 }
 
