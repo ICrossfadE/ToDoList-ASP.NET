@@ -20,9 +20,9 @@ public class HomeController : Controller
         return View(todoList);
     }
 
-    internal TodoViewModel GetAllTodos()
+    public AllTodoListModel GetAllTodos()
     {
-        List<ToDo> todoList = [];
+        List<ToDoModel> todoList = [];
 
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
@@ -35,24 +35,27 @@ public class HomeController : Controller
             while (reader.Read())
             {
                 todoList.Add(
-                    new ToDo
+                    
+                    new ToDoModel
                     {
                         Id = reader.GetInt32(0),
-                        Name = reader.GetString(1)
+                        Name = reader.GetString(1),
+                        Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
+                        // StatusId = reader.GetInt32(3),
                     }
                 );
             }
         }
 
-        return new TodoViewModel
+        return new AllTodoListModel
         {
             TodoList = todoList
         };
     }
 
-    internal ToDo GetById(int id)
+    public ToDoModel GetById(int id)
     {
-        ToDo todo = new();
+        ToDoModel todo = new();
 
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
@@ -65,10 +68,11 @@ public class HomeController : Controller
         {
             while (reader.Read())
             {
-                todo = new ToDo
+                todo = new ToDoModel
                 {
                     Id = reader.GetInt32(0),
-                    Name = reader.GetString(1)
+                    Name = reader.GetString(1),
+                    Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
                 };
             }
         }
@@ -78,33 +82,76 @@ public class HomeController : Controller
 
 
     [HttpGet]
-    public JsonResult UpdateForm(int id)
+    public JsonResult UpdateTodo(int id)
     {
         var todo = GetById(id);
         return Json(todo);
     }
 
 
-    public RedirectResult Insert(ToDo todo)
-    
+    [HttpPost]
+    public IActionResult Insert([FromBody] ToDoModel todo)
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
         using var tableCmd = connection.CreateCommand();
         connection.Open();
-        tableCmd.CommandText = $"INSERT INTO todo (name) VALUES ('{todo.Name}')";
+
+        if(todo.Id != 0) 
+        {
+            // Update
+            tableCmd.CommandText = "UPDATE todo SET Name = @name, Description = @description, StatusId = @statusId WHERE Id = @id";
+            tableCmd.Parameters.AddWithValue("@id", todo.Id);
+            tableCmd.Parameters.AddWithValue("@name", todo.Name);
+            tableCmd.Parameters.AddWithValue("@description", todo.Description);
+            tableCmd.Parameters.AddWithValue("@statusId", todo.StatusId);
+        }
+        else
+        {
+            // Create
+            tableCmd.CommandText = "INSERT INTO todo (Name, Description, StatusId) VALUES (@name, @description, @statusId)";
+            tableCmd.Parameters.AddWithValue("@name", todo.Name);
+            tableCmd.Parameters.AddWithValue("@description", todo.Description);
+            tableCmd.Parameters.AddWithValue("@statusId", todo.StatusId);
+        }
+
         try
-            {
-                tableCmd.ExecuteNonQuery();
-            }
+        {
+            tableCmd.ExecuteNonQuery();
+        }
         catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+        {
+            Console.WriteLine(ex.Message);
+            return StatusCode(500, "Internal server error");
+        }
 
         return Redirect("http://localhost:5248");
     }
 
-    [HttpPost]
+    // [HttpPost]
+    // public IActionResult SetStatusId([FromBody] ToDoModel todo) 
+    // {
+
+    //     using SqliteConnection connection = new("Data Source=db.sqlite");
+    //     using var tableCmd = connection.CreateCommand();
+    //     connection.Open();
+
+    //     tableCmd.CommandText = "UPDATE todo SET StatusId = @StatusId WHERE Id = @id";
+    //     tableCmd.Parameters.AddWithValue("@id", todo.Id);
+    //     tableCmd.Parameters.AddWithValue("@StatusId", todo.StatusIdId);
+
+    //     try
+    //         {
+    //             tableCmd.ExecuteNonQuery();
+    //         }
+    //     catch (Exception ex)
+    //         {
+    //             Console.WriteLine(ex.Message);
+    //         }
+    //     return Ok();
+    // }
+
+
+    [HttpDelete]
     public JsonResult Delete(int id)
     {
         using SqliteConnection connection = new("Data Source=db.sqlite");
@@ -115,23 +162,5 @@ public class HomeController : Controller
         tableCmd.ExecuteNonQuery();
 
         return Json(new {});
-    }
-    
-    public RedirectResult Update(ToDo todo)
-    {
-        using SqliteConnection connection = new("Data Source=db.sqlite");
-        using var tableCmd = connection.CreateCommand();
-        connection.Open();
-        tableCmd.CommandText = $"UPDATE todo SET Name = '{todo.Name}' WHERE Id = '{todo.Id}'";
-        try
-            {
-                tableCmd.ExecuteNonQuery();
-            }
-        catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        return Redirect("http://localhost:5248");
     }
 }

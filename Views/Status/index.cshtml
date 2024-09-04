@@ -1,0 +1,55 @@
+@model AllStatusLitsModel
+
+<div class="min-w-full flex flex-col gap-4">
+    <div class="w-full">
+        <!-- Botton -->  
+        <button id="add-status" class="block mx-auto w-3/4 text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700" type="button">
+            Add Status
+        </button>
+
+        <dialog id="default-modal-status" class="rounded-lg shadow-lg ">
+            <!-- Modal content -->
+            <div class="bg-slate-200 rounded-lg shadow relative dark:bg-gray-700 p-6">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between py-6 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
+                        New Status
+                    </h3>
+                    <button id="cancel-status-button" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div id="status-form">
+                    <form class="form-modal">
+                        <input id='form-status-input' type="text" placeholder="Status name..." autoComplete="off" class="w-full mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black text-center py-3 rounded-lg bg-neutral-200"/>
+                    </form>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex space-x-2 items-center py-6 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button id='create-status-button' type="submit" onclick="createStatus()" class="block text-white bg-green-500 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700">
+                        Create Status
+                    </button>
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+    <div class="flex flex-col gap-2">
+            @foreach (var status in Model.StatusList)
+            {
+                <div class="flex justify-between bg-slate-200 py-2 rounded-md">
+                    <div class="flex justify-start gap-1 font-bold py-2 px-2">
+                        @* <span>@status.Id</span> *@
+                        <span class="font-normal text-gray-400">Status Name:</span>
+                        <span>@status.StatusName</span>
+                    </div>
+
+                    <div class="flex gap-2 px-2">
+                        <input id="edit" type="submit" value="Edit" onclick="updateStatus(@status.Id)" class="flex px-2 py-1 bg-cyan-600 hover:bg-cyan-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                        <input id="delete" type="submit" value="Delete" onclick="deleteStatus(@status.Id)" class="flex px-2 py-1 bg-red-600 hover:bg-red-700 text-gray-50 rounded-md hover:cursor-pointer "> 
+                    </div>   
+                </div>
+            } 
+    </div>
+</div>
