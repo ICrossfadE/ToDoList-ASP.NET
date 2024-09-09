@@ -3,7 +3,7 @@
 <div class="min-w-full flex flex-col gap-4">
     <div class="w-full">
         <!-- Botton -->  
-        <button id="add-status" class="block mx-auto w-3/4 text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700" type="button">
+        <button id="add-status" class="block mx-auto w-3/4 drop-shadow-lg text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700" type="button">
             Add Status
         </button>
 
@@ -37,7 +37,7 @@
         
     </div>
 
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-4 drop-shadow-lg">
             @foreach (var status in Model.StatusList)
             {
                 <div class="flex justify-between bg-slate-200 py-2 rounded-md">

@@ -22,6 +22,14 @@ function hideAlert(todoId) {
     modal.close();
 }
 
+// Description
+function showDescription(todoId) {
+    const description = document.getElementById(`todo-description-${todoId}`);
+    
+    description.classList.toggle('hidden');
+    description.classList.toggle('active');
+}
+
 // Cancel Todo
 cancelButtont.addEventListener('click', (event) => {
     event.preventDefault();
