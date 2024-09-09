@@ -2,6 +2,7 @@ const addStatus = document.getElementById('add-status');
 const dialogStatus = document.getElementById('default-modal-status');
 const cancelStatusButtont = document.getElementById('cancel-status-button');
 const createStatusButtont = document.getElementById('create-status-button');
+const deleteBotton = document.getElementById('delete');
 const statusInput = document.getElementById('form-status-input');
 
 // Status
@@ -10,6 +11,16 @@ addStatus.addEventListener('click', (event) => {
 
   dialogStatus.showModal();
 });
+
+function showAlert(statusId) {
+  const modal = document.getElementById(`alert-modal-todo-${statusId}`);
+  modal.showModal();
+}
+
+function hideAlert(statusId) {
+  const modal = document.getElementById(`alert-modal-todo-${statusId}`);
+  modal.close();
+}
 
 // Cancel modal
 cancelStatusButtont.addEventListener('click', (event) => {
