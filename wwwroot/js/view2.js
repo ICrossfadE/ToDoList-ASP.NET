@@ -12,6 +12,7 @@ addStatus.addEventListener('click', (event) => {
   dialogStatus.showModal();
 });
 
+// Alert
 function showAlert(statusId) {
   const modal = document.getElementById(`alert-modal-todo-${statusId}`);
   modal.showModal();

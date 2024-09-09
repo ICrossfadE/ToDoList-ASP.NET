@@ -11,6 +11,17 @@ addTodo.addEventListener('click', (event) => {
     dialogTodo.showModal();
 });
 
+// Alert
+function showAlert(todoId) {
+    const modal = document.getElementById(`alert-modal-todo-${todoId}`);
+    modal.showModal();
+  }
+  
+function hideAlert(todoId) {
+    const modal = document.getElementById(`alert-modal-todo-${todoId}`);
+    modal.close();
+}
+
 // Cancel Todo
 cancelButtont.addEventListener('click', (event) => {
     event.preventDefault();
