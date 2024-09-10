@@ -2,6 +2,7 @@ const addStatus = document.getElementById('add-status');
 const dialogStatus = document.getElementById('default-modal-status');
 const cancelStatusButtont = document.getElementById('cancel-status-button');
 const createStatusButtont = document.getElementById('create-status-button');
+const headerModal = document.getElementById(`header-alert`);
 const deleteBotton = document.getElementById('delete');
 const statusInput = document.getElementById('form-status-input');
 
@@ -9,6 +10,7 @@ const statusInput = document.getElementById('form-status-input');
 addStatus.addEventListener('click', (event) => {
   event.preventDefault();
 
+  headerModal.textContent = "New Status";
   dialogStatus.showModal();
 });
 
