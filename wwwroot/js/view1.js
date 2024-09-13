@@ -11,26 +11,6 @@ addTodo.addEventListener('click', (event) => {
     dialogTodo.showModal();
 });
 
-// Alert
-function showAlert(todoId) {
-    const modal = document.getElementById(`alert-modal-todo-${todoId}`);
-    modal.showModal();
-  }
-
-function hideAlert(todoId) {
-    const modal = document.getElementById(`alert-modal-todo-${todoId}`);
-    modal.close();
-}
-
-// Description
-function showDescription(todoId) {
-    const description = document.getElementById(`todo-description-${todoId}`);
-
-    description.classList.toggle('hidden');
-    description.classList.toggle('active');
-}
-
-
 // Cancel Todo
 cancelButtont.addEventListener('click', (event) => {
     event.preventDefault();

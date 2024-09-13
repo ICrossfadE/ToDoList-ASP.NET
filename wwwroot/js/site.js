@@ -104,12 +104,12 @@ function updateStatus(id)
 
 function setStatus(id) 
 {
-    var status = $(`#todo-status-${id}`).val();
+    var status = $("#todo-status").val();
 
     $.ajax({
         url: 'Home/SetStatusId',
         type: 'POST',
-        contentType: 'application/json',// Встановіть тип контенту як JSON
+        contentType: 'application/json', // Встановіть тип контенту як JSON
         data: JSON.stringify({
             Id: id,
             StatusId: parseInt(status)
@@ -118,9 +118,6 @@ function setStatus(id)
         success: function (response) {  
             console.log(`Status updated successfully ${response}` );
         },
-        error: function(error) {
-            console.error('Error:', error);
-        }
     });
 }
 
