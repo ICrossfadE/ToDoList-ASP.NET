@@ -55,14 +55,14 @@ function updateTodo(id)
             $("#form-textarea").val(response.description);
 
             // Show modal
-            document.getElementById('default-modal').showModal();
+            document.getElementById('default-modal-todo').showModal();
 
             //Edit Button
             $("#create-button").text("Edit Todo");
             $("#create-button").removeClass("bg-green-500");
             $("#create-button").removeClass("hover:bg-green-600");
-            $("#create-button").addClass("bg-cyan-600");
-            $("#create-button").addClass("hover:bg-cyan-700");
+            $("#create-button").addClass("bg-cyan-500");
+            $("#create-button").addClass("hover:bg-cyan-600");
         },
         error: function(error) {
             console.error('Error:', error);
@@ -81,19 +81,20 @@ function updateStatus(id)
         },
         dataType: 'json',
         success: function (response) {
-             statusId = response.id;
-             console.log('Response:', response);
-            $("#form-status-input").val(response.name);
+            statusId = response.id;
+            console.log('Response:', response);
+            $("#form-status-input").val(response.statusName);
 
             // Show modal
             document.getElementById('default-modal-status').showModal();
 
             //Edit Button
-            $("#create-status-button").text("Edit Todo");
+            $("#header-alert").text("Edit Status");
+            $("#create-status-button").text("Edit Status");
             $("#create-status-button").removeClass("bg-green-500");
             $("#create-status-button").removeClass("hover:bg-green-600");
-            $("#create-status-button").addClass("bg-cyan-600");
-            $("#create-status-button").addClass("hover:bg-cyan-700");
+            $("#create-status-button").addClass("bg-cyan-500");
+            $("#create-status-button").addClass("hover:bg-cyan-600");
         },
         error: function(error) {
             console.error('Error:', error);
@@ -103,23 +104,21 @@ function updateStatus(id)
 
 function setStatus(id) 
 {
-    var status = $("#todo-status").val();
+    var status = $(`#todo-status-${id}`).val();
+    console.log(`Selected status: ${status}`);
 
     $.ajax({
-        url: 'Home/SetStatus',
+        url: 'Home/SetStatusId',
         type: 'POST',
-        contentType: 'application/json', // Встановіть тип контенту як JSON
+        contentType: 'application/json',
         data: JSON.stringify({
-            id: id,
-            status: status
+            Id: id,
+            StatusId: parseInt(status)
         }),
         dataType: 'json',
         success: function (response) {  
-            console.log("Status updated successfully");
+            console.log(`Status updated successfully ${response}` );
         },
-        error: function(error) {
-            console.error('Error:', error);
-        }
     });
 }
 

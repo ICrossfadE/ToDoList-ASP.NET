@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
+using ToDoList.Models;
 
 public class StatusController : Controller
 {
@@ -17,7 +18,7 @@ public class StatusController : Controller
         return View(statusList);
     }
 
-    public AllStatusLitsModel GetAllStatus()
+    public AllTodoListModel GetAllStatus()
     {
         List<StatusModel> statusList = [];
 
@@ -42,7 +43,7 @@ public class StatusController : Controller
             }
         }
 
-        return new AllStatusLitsModel
+        return new AllTodoListModel
         {
             StatusList = statusList
         };

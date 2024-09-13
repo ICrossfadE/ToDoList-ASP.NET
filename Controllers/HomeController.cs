@@ -16,42 +16,66 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var todoList = GetAllTodos();
-        return View(todoList);
+        var model = GetAllData();
+        return View(model);
     }
 
-    public AllTodoListModel GetAllTodos()
+    public AllTodoListModel GetAllData()
     {
         List<ToDoModel> todoList = [];
+        List<StatusModel> statusList = [];
 
-        using SqliteConnection connection = new("Data Source=db.sqlite");
-        using var tableCmd = connection.CreateCommand();
-        connection.Open();
-        tableCmd.CommandText = "SELECT * FROM todo";
-
-        using var reader = tableCmd.ExecuteReader();
-        if (reader.HasRows)
+        // Read from db.sqlite
+        using (SqliteConnection todoConnection = new("Data Source=db.sqlite"))
         {
-            while (reader.Read())
+            todoConnection.Open();
+
+            // Get todos
+            using (var tableCmd = todoConnection.CreateCommand())
             {
-                todoList.Add(
-                    
-                    new ToDoModel
+                tableCmd.CommandText = "SELECT * FROM todo";
+                using var reader = tableCmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    todoList.Add(new ToDoModel
                     {
                         Id = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
-                        // StatusId = reader.GetInt32(3),
-                    }
-                );
+                        StatusId = reader.IsDBNull(3) ? 0 : reader.GetInt32(3) // Ensure StatusId is read
+                    });
+                }
+            }
+        }
+
+        // Read from statuses.sqlite
+        using (SqliteConnection statusConnection = new("Data Source=statuses.sqlite"))
+        {
+            statusConnection.Open();
+
+            // Get statuses
+            using (var tableCmd = statusConnection.CreateCommand())
+            {
+                tableCmd.CommandText = "SELECT * FROM todoStatus"; // Ensure this is the correct table name
+                using var reader = tableCmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    statusList.Add(new StatusModel
+                    {
+                        Id = reader.GetInt32(0),
+                        StatusName = reader.GetString(1)
+                    });
+                }
             }
         }
 
         return new AllTodoListModel
         {
-            TodoList = todoList
+            TodoList = todoList,
+            StatusList = statusList
         };
     }
+
 
     public ToDoModel GetById(int id)
     {
@@ -127,28 +151,34 @@ public class HomeController : Controller
         return Redirect("http://localhost:5248");
     }
 
-    // [HttpPost]
-    // public IActionResult SetStatusId([FromBody] ToDoModel todo) 
-    // {
+    [HttpPost]
+    public IActionResult SetStatusId([FromBody] ToDoModel todo) 
+    {
+        if (todo == null || todo.Id == 0 || todo.StatusId == 0)
+        {
+            return BadRequest("Invalid data.");
+        }
 
-    //     using SqliteConnection connection = new("Data Source=db.sqlite");
-    //     using var tableCmd = connection.CreateCommand();
-    //     connection.Open();
+        using SqliteConnection connection = new("Data Source=db.sqlite");
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
 
-    //     tableCmd.CommandText = "UPDATE todo SET StatusId = @StatusId WHERE Id = @id";
-    //     tableCmd.Parameters.AddWithValue("@id", todo.Id);
-    //     tableCmd.Parameters.AddWithValue("@StatusId", todo.StatusIdId);
+        tableCmd.CommandText = "UPDATE todo SET StatusId = @StatusId WHERE Id = @Id";
+        tableCmd.Parameters.AddWithValue("@Id", todo.Id);
+        tableCmd.Parameters.AddWithValue("@StatusId", todo.StatusId);
 
-    //     try
-    //         {
-    //             tableCmd.ExecuteNonQuery();
-    //         }
-    //     catch (Exception ex)
-    //         {
-    //             Console.WriteLine(ex.Message);
-    //         }
-    //     return Ok();
-    // }
+        try
+        {
+            tableCmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return StatusCode(500, "Internal server error");
+        }
+        
+        return Ok();
+    }
 
 
     [HttpDelete]
