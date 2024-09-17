@@ -1,14 +1,18 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Data.Sqlite;
+using ToDoList.Controllers;
 using ToDoList.Models;
 
 public class StatusController : Controller
 {
     private readonly ILogger<StatusController> _logger;
+    private readonly IConfiguration _configuration;
 
-    public StatusController(ILogger<StatusController> logger)
+    public StatusController(ILogger<StatusController> logger, IConfiguration configuration)
     {
+        _configuration = configuration;
         _logger = logger;
     }
 
@@ -22,75 +26,48 @@ public class StatusController : Controller
     {
         List<StatusModel> statusList = [];
 
-        using SqliteConnection connection = new("Data Source=statuses.sqlite");
-        using var tableCmd = connection.CreateCommand();
-        connection.Open();
-        tableCmd.CommandText = "SELECT * FROM todoStatus";
+        string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
-        using var reader = tableCmd.ExecuteReader();
-        if (reader.HasRows)
+        using (SqlConnection statusConnection = new SqlConnection(connectionString))
         {
-            while (reader.Read())
+            statusConnection.Open();
+
+            using (var tableCmd = statusConnection.CreateCommand())
             {
-               statusList.Add(
-                    
-                    new StatusModel
+                tableCmd.CommandText = "SELECT * FROM statuses";
+                using var reader = tableCmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
                     {
-                        Id = reader.GetInt32(0),
-                        StatusName = reader.GetString(1),
+                        statusList.Add(
+                            new StatusModel
+                            {
+                                Id = reader.GetInt32(0),
+                                StatusName = reader.GetString(1),
+                            }
+                        );
                     }
-                );
+                }
+
+                return new AllTodoListModel { StatusList = statusList };
+
             }
-        }
 
-        return new AllTodoListModel
-        {
-            StatusList = statusList
-        };
-    }
 
-    [HttpPost]
-    public IActionResult Insert([FromBody] StatusModel statusItem)
-    {
-        using SqliteConnection connection = new("Data Source=statuses.sqlite");
-        using var tableCmd = connection.CreateCommand();
-        connection.Open();
-
-        if(statusItem.Id != 0) 
-        {
-            // Update
-            tableCmd.CommandText = "UPDATE todoStatus SET StatusName = @name WHERE Id = @id";
-            tableCmd.Parameters.AddWithValue("@id", statusItem.Id);
-            tableCmd.Parameters.AddWithValue("@name", statusItem.StatusName);
         }
-        else
-        {
-            // Create
-            tableCmd.CommandText = "INSERT INTO todoStatus (StatusName) VALUES (@name)";
-            tableCmd.Parameters.AddWithValue("@name", statusItem.StatusName);
-        }
-
-        try
-        {
-            tableCmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return StatusCode(500, "Internal server error");
-        }
-
-        return Redirect("http://localhost:5248");
     }
 
     public StatusModel GetById(int id)
     {
         StatusModel statusItem = new();
 
-        using SqliteConnection connection = new("Data Source=statuses.sqlite");
+        string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using SqlConnection connection = new(connectionString);
         using var tableCmd = connection.CreateCommand();
         connection.Open();
-        tableCmd.CommandText = "SELECT * FROM todoStatus WHERE Id = @id";
+        tableCmd.CommandText = "SELECT * FROM statuses WHERE Id = @id";
         tableCmd.Parameters.AddWithValue("@id", id);
 
         using var reader = tableCmd.ExecuteReader();
@@ -109,6 +86,44 @@ public class StatusController : Controller
         return statusItem;
     }
 
+    [HttpPost]
+    public IActionResult Insert([FromBody] StatusModel statusItem)
+    {
+        string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using SqlConnection connection = new(connectionString);
+        using var tableCmd = connection.CreateCommand();
+        connection.Open();
+
+        if (statusItem.Id != 0)
+        {
+            // Update
+            tableCmd.CommandText = "UPDATE statuses SET StatusName = @name WHERE Id = @id";
+            tableCmd.Parameters.AddWithValue("@id", statusItem.Id);
+            tableCmd.Parameters.AddWithValue("@name", statusItem.StatusName);
+        }
+        else
+        {
+            // Create
+            tableCmd.CommandText = "INSERT INTO statuses (StatusName) VALUES (@name)";
+            tableCmd.Parameters.AddWithValue("@name", statusItem.StatusName);
+        }
+
+        try
+        {
+            tableCmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return StatusCode(500, "Internal server error");
+        }
+
+        return Redirect("http://localhost:5248");
+    }
+
+
+
     [HttpGet]
     public JsonResult UpdateStatus(int id)
     {
@@ -119,14 +134,16 @@ public class StatusController : Controller
     [HttpDelete]
     public JsonResult Delete(int id)
     {
-        using SqliteConnection connection = new("Data Source=statuses.sqlite");
+        string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using SqlConnection connection = new(connectionString);
         using var tableCmd = connection.CreateCommand();
         connection.Open();
-        tableCmd.CommandText = "DELETE FROM todoStatus WHERE Id = @id";
+        tableCmd.CommandText = "DELETE FROM statuses WHERE Id = @id";
         tableCmd.Parameters.AddWithValue("@id", id);
         tableCmd.ExecuteNonQuery();
 
-        return Json(new {});
+        return Json(new { });
     }
 
 }
