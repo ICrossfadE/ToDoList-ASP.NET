@@ -2,8 +2,7 @@
 let statusId = 0;
 
 // Toodo
-function createTodo() 
-{
+function createTodo() {
     const name = document.getElementById('form-input').value;
     const description = document.getElementById('form-textarea').value;
     const status = document.getElementById('todo-status')?.value;
@@ -13,7 +12,7 @@ function createTodo()
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ Id: todoId, Name: name, Description: description, StatusId: status }),
-        success: function(response) {
+        success: function (response) {
             window.location.reload();
             console.log('Todo created:', response);
         },
@@ -21,16 +20,15 @@ function createTodo()
 }
 
 // Status
-function createStatus() 
-{
-    const name = document.getElementById('form-status-input').value;
+function createStatus() {
+    const name = document.getElementById('form-status-name-input').value;
 
     $.ajax({
         url: 'Status/Insert',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({ Id: statusId, StatusName: name }),
-        success: function(response) {
+        data: JSON.stringify({ Id: statusId, StatusName: name}),
+        success: function (response) {
             window.location.reload();
             console.log('Status created:', response);
         },
@@ -38,8 +36,7 @@ function createStatus()
 }
 
 // Todo
-function updateTodo(id) 
-{
+function updateTodo(id) {
 
     $.ajax({
         url: 'Home/UpdateTodo',
@@ -49,8 +46,8 @@ function updateTodo(id)
         },
         dataType: 'json',
         success: function (response) {
-             todoId = response.id;
-             console.log('Response:', response);
+            todoId = response.id;
+            console.log('Response:', response);
             $("#form-input").val(response.name);
             $("#form-textarea").val(response.description);
 
@@ -64,15 +61,14 @@ function updateTodo(id)
             $("#create-button").addClass("bg-cyan-500");
             $("#create-button").addClass("hover:bg-cyan-600");
         },
-        error: function(error) {
+        error: function (error) {
             console.error('Error:', error);
         }
     });
 }
 
 // Status
-function updateStatus(id) 
-{
+function updateStatus(id) {
     $.ajax({
         url: 'Status/UpdateStatus',
         type: 'GET',
@@ -83,7 +79,7 @@ function updateStatus(id)
         success: function (response) {
             statusId = response.id;
             console.log('Response:', response);
-            $("#form-status-input").val(response.statusName);
+            $("#form-status-name-input").val(response.statusName);
 
             // Show modal
             document.getElementById('default-modal-status').showModal();
@@ -96,41 +92,39 @@ function updateStatus(id)
             $("#create-status-button").addClass("bg-cyan-500");
             $("#create-status-button").addClass("hover:bg-cyan-600");
         },
-        error: function(error) {
+        error: function (error) {
             console.error('Error:', error);
         }
     });
 }
 
-function setStatus(id) 
-{
-    var status = $("#todo-status").val();
+function setStatus(id) {
+    var status = $(`#todo-status-${id}`).val();
 
     $.ajax({
         url: 'Home/SetStatusId',
         type: 'POST',
-        contentType: 'application/json', // Встановіть тип контенту як JSON
+        contentType: 'application/json',
         data: JSON.stringify({
             Id: id,
             StatusId: parseInt(status)
         }),
         dataType: 'json',
-        success: function (response) {  
-            console.log(`Status updated successfully ${response}` );
+        success: function (response) {
+            console.log(`Status updated successfully ${response}`);
         },
     });
 }
 
 // Todo
-function deleteTodo(id) 
-{
+function deleteTodo(id) {
     $.ajax({
         url: 'Home/Delete',
         type: 'DELETE',
         data: {
             id: id
         },
-        success: function() {
+        success: function () {
             window.location.reload();
             console.log('del', id);
         }
@@ -138,15 +132,14 @@ function deleteTodo(id)
 }
 
 // Status
-function deleteStatus(id) 
-{
+function deleteStatus(id) {
     $.ajax({
         url: 'Status/Delete',
         type: 'DELETE',
         data: {
             id: id
         },
-        success: function() {
+        success: function () {
             window.location.reload();
             console.log('del', id);
         }

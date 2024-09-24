@@ -46,7 +46,7 @@ namespace ToDoList.Controllers
                             Id = reader.GetInt32(0),
                             Name = reader.GetString(1),
                             Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
-                            StatusId = reader.IsDBNull(3) ? 0 : reader.GetInt32(3) // Ensure StatusId is read
+                            StatusId = reader.IsDBNull(3) ? 0 : reader.GetInt32(3)
                         });
                     }
                 }
@@ -59,7 +59,7 @@ namespace ToDoList.Controllers
 
                 using (var tableCmd = statusConnection.CreateCommand())
                 {
-                    tableCmd.CommandText = "SELECT * FROM statuses"; // Ensure this is the correct table name
+                    tableCmd.CommandText = "SELECT * FROM statuses";
                     using var reader = tableCmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -101,6 +101,7 @@ namespace ToDoList.Controllers
                         Id = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
+                        StatusId = reader.GetInt32(3)
                     };
                 }
             }

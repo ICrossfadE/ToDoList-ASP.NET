@@ -62,7 +62,7 @@
                                     <option value="0">Choose status</option>
                                 }
 
-                                @foreach (var status in Model.StatusList)
+                                @foreach (var status in Model.StatusList.OrderBy(item => item.PriorityId))
                                 {
                                     if (status.Id == info.StatusId)
                                     {

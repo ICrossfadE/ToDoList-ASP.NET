@@ -33,8 +33,9 @@ public class StatusController : Controller
             statusConnection.Open();
 
             using (var tableCmd = statusConnection.CreateCommand())
-            {
-                tableCmd.CommandText = "SELECT * FROM statuses";
+            {   
+                // Сортувати за PriorityId
+                tableCmd.CommandText = "SELECT * FROM statuses ORDER BY PriorityId";
                 using var reader = tableCmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -45,6 +46,7 @@ public class StatusController : Controller
                             {
                                 Id = reader.GetInt32(0),
                                 StatusName = reader.GetString(1),
+                                /*PriorityId = reader.GetInt32(2),*/
                             }
                         );
                     }
@@ -79,6 +81,7 @@ public class StatusController : Controller
                 {
                     Id = reader.GetInt32(0),
                     StatusName = reader.GetString(1),
+
                 };
             }
         }
@@ -98,7 +101,7 @@ public class StatusController : Controller
         if (statusItem.Id != 0)
         {
             // Update
-            tableCmd.CommandText = "UPDATE statuses SET StatusName = @name WHERE Id = @id";
+            tableCmd.CommandText = "UPDATE statuses SET StatusName = @name, WHERE Id = @id";
             tableCmd.Parameters.AddWithValue("@id", statusItem.Id);
             tableCmd.Parameters.AddWithValue("@name", statusItem.StatusName);
         }
@@ -146,4 +149,40 @@ public class StatusController : Controller
         return Json(new { });
     }
 
+    [HttpPost]
+    public IActionResult UpdatePosition([FromBody] List<StatusModel> newPosition)
+    {
+        string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        using SqlConnection connection = new(connectionString);
+        connection.Open();
+
+        using SqlTransaction transaction = connection.BeginTransaction();
+
+        try
+        {
+
+            foreach (var status in newPosition)
+            {
+                using var cmd = connection.CreateCommand();
+                cmd.Transaction = transaction;
+
+                cmd.CommandText = "UPDATE statuses SET PriorityId = @priority, StatusName = @name WHERE Id = @id";
+                cmd.Parameters.AddWithValue("@id", status.Id); // ID статусу
+                cmd.Parameters.AddWithValue("@name", status.StatusName);
+                cmd.Parameters.AddWithValue("@priority", status.PriorityId); // Новий пріоритет
+                cmd.ExecuteNonQuery();
+            }
+
+            transaction.Commit();
+        }
+        catch (Exception ex)
+        {
+            transaction.Rollback();
+            Console.WriteLine(ex.Message);
+            return StatusCode(500, "Internal server error");
+        }
+
+        return Json(new { success = true });
+    }
 }
