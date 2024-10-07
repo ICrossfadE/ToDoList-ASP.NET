@@ -3,22 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 public class TodoDbContext : DbContext
 {
+    public DbSet<User> Users { get; set; }
+    public DbSet<ToDoModel> TodoItems { get; set; }
+    public DbSet<StatusModel> Statuses { get; set; }
     public TodoDbContext(DbContextOptions<TodoDbContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
-
-    // DbSet для таблиць
-    public DbSet<ToDoModel> TodoItems { get; set; }
-}
-
-public class StatusDbContext : DbContext
-{
-    public StatusDbContext(DbContextOptions<StatusDbContext> options)
-        : base(options)
-    {
-    }
-
-    // DbSet для таблиць
-    public DbSet<StatusModel> Statuses { get; set; }
 }

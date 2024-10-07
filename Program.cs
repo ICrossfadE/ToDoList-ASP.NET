@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ToDoList.Models; // додати простір імен з вашими моделями
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +9,6 @@ var configuration = builder.Configuration;
 
 builder.Services.AddDbContext<TodoDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddDbContext<StatusDbContext>(options =>
-    options.UseSqlServer(configuration.GetConnectionString("AnotherConnection")));
 
 builder.Services.AddControllersWithViews();
 
@@ -29,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=Index}/{id?}");
 
 app.Run();

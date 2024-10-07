@@ -33,7 +33,7 @@ public class StatusController : Controller
             statusConnection.Open();
 
             using (var tableCmd = statusConnection.CreateCommand())
-            {   
+            {
                 // Сортувати за PriorityId
                 tableCmd.CommandText = "SELECT * FROM statuses ORDER BY PriorityId";
                 using var reader = tableCmd.ExecuteReader();
@@ -46,7 +46,6 @@ public class StatusController : Controller
                             {
                                 Id = reader.GetInt32(0),
                                 StatusName = reader.GetString(1),
-                                /*PriorityId = reader.GetInt32(2),*/
                             }
                         );
                     }
