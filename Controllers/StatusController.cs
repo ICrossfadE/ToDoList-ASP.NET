@@ -17,6 +17,7 @@ public class StatusController : Controller
         _logger = logger;
     }
 
+    [Authorize]
     public IActionResult Index()
     {
         var statusList = GetAllStatus();

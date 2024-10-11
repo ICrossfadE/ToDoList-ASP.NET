@@ -170,7 +170,9 @@ function register() {
             updateAuthUI();
 
             // Перенаправляємо на головну сторінку
-            window.location.href = '/';
+            // window.location.href = '/Home';
+
+
         },
         error: function (xhr, status, error) {
             console.log('Error:', error);
@@ -183,12 +185,24 @@ function updateAuthUI() {
     const token = localStorage.getItem('jwt_token');
     if (token) {
         // Оновлюємо інтерфейс для авторизованого користувача
+        console.log('Користувач авторизований');
         $('.auth-only').show();
-        $('.guest-only').hide();
     } else {
         // Оновлюємо інтерфейс для гостя
+        console.log('Користувач не авторизований');
         $('.auth-only').hide();
-        $('.guest-only').show();
+
+    }
+}
+function checkAuthOnPageLoad() {
+    const token = localStorage.getItem('jwt_token');
+
+    if (token) {
+        updateAuthUI(); // Оновлюємо інтерфейс
+    } else {    
+        updateAuthUI(); // Оновлюємо інтерфейс
     }
 }
 
+// Викликаємо функцію при завантаженні сторінки
+window.onload = checkAuthOnPageLoad;

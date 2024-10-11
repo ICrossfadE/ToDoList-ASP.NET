@@ -37,7 +37,7 @@ namespace ToDoList.Controllers
 
         [HttpPost]
         [Route("api/register")]
-        public async Task<IActionResult> Register([FromForm] UserModel user)
+        public async Task<IActionResult> Register([FromBody] UserModel user)
         {
             // Перевірка на наявність користувача з такою ж поштою
             if (await _userService.UserExists(user.Email))
@@ -51,23 +51,9 @@ namespace ToDoList.Controllers
             // Генерація JWT токена для нового користувача
             var token = GenerateJwtToken(newUser);
 
-            await Authenticate(user.Email); // аутентификация
-
-            return RedirectToAction("Index", "Home");
+            return Ok(new { token });
         }
 
-        private async Task Authenticate(string userName)
-        {
-            // создаем один claim
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
-            };
-            // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-            // установка аутентификационных куки
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        }
 
         // Метод для генерації JWT токена
         private string GenerateJwtToken(UserModel user)

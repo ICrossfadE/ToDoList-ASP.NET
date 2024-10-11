@@ -27,13 +27,8 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
     };
-})
-.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-{
-    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home");
-    // options.LoginPath = "/api/login"; // Встановіть шлях для входу, якщо потрібно
-    // options.LogoutPath = "/api/logout"; // Встановіть шлях для виходу, якщо потрібно
 });
+
 
 builder.Services.AddAuthorization();
 
