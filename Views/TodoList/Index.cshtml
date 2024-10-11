@@ -1,0 +1,113 @@
+﻿@model AllTodoListModel
+
+<div class="min-w-full flex flex-col gap-4">
+
+    <div class="w-full">
+        <!-- Botton -->
+        <button id="add-todo" class="block mx-auto w-3/4 drop-shadow-lg text-white bg-green-500 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700" type="button">
+            Add Todo
+        </button>
+
+        <dialog id="default-modal-todo" class="rounded-lg shadow-lg ">
+            <!-- Modal content -->
+            <div class="bg-slate-200 rounded-lg shadow relative dark:bg-gray-700 p-6">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between py-6 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
+                        New Todo
+                    </h3>
+                    <button id="cancel-button" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div id="todo-form">
+                    <form class="form-modal">
+                        <input id='form-input' type="text" placeholder="Todo name..." autoComplete="off" class="w-full mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black text-center py-3 rounded-lg bg-neutral-200" />
+                        <textarea id='form-textarea' rows="4" placeholder="Enter your text here..." class="w-full mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </form>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex space-x-2 items-center py-6 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button id='create-button' type="submit" onclick="createTodo()" class="block text-white bg-green-500 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700">
+                        Create Todo
+                    </button>
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+    <div class="flex flex-col gap-4 drop-shadow-lg">
+        @foreach (var info in Model.TodoList)
+        {
+            <div class="flex flex-col bg-slate-200 py-2 rounded-md">
+                <div class="flex justify-start gap-1 font-bold border-b-2 border-gray-300 py-2 px-4">
+                    @* <span>@info.Id</span> *@
+                    <span>@info.Name</span>
+                </div>
+
+                <div class="py-2 px-4">
+                    <span onclick="showDescription(@info.Id)" class=" text-neutral-500 text-xs cursor-pointer">Description</span>
+                    <p id="todo-description-@info.Id" class="hidden">@info.Description</p>
+                </div>
+
+                <div class="flex gap-2 justify-between border-t-2 border-gray-300 py-2 px-4">
+                    <select id="todo-status-@info.Id" onchange="setStatus(@info.Id)" class="py-1 px-1 block w-36 cursor-pointer border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                        @if (info.StatusId == 0)
+                        {
+                            <option value="0" selected>Choose status</option>
+                        }
+                        else
+                        {
+                            <option value="0">Choose status</option>
+                        }
+
+                        @foreach (var status in Model.StatusList.OrderBy(item => item.PriorityId))
+                        {
+                            if (status.Id == info.StatusId)
+                            {
+                                <option value="@status.Id" selected>@status.StatusName</option>
+                            }
+                            else
+                            {
+                                <option value="@status.Id">@status.StatusName</option>
+                            }
+                        }
+                    </select>
+
+                    <div class="flex gap-2">
+                        <input id="edit" type="submit" value="Edit" onclick="updateTodo(@info.Id)" class="flex px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-gray-50 rounded-md hover:cursor-pointer ">
+                        <input id="delete" type="submit" value="Delete" onclick="showAlert(@info.Id)" class="flex px-4 py-2 bg-red-500 hover:bg-red-600 text-gray-50 rounded-md hover:cursor-pointer ">
+                    </div>
+                </div>
+            </div>
+
+            <dialog id="alert-modal-todo-@info.Id" class="rounded-lg shadow-lg ">
+                @* Modal content *@
+                <div class="bg-slate-200 rounded-lg shadow relative dark:bg-gray-700 p-6">
+                    @* Modal header *@
+                    <div class="flex items-start justify-between py-6 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
+                            Confirming
+                        </h3>
+                    </div>
+                    @* Modal body *@
+                    <div>
+                        <p>
+                            Are you sure you want to delete this <strong>@info.Name</strong> status?
+                        </p>
+                    </div>
+                    @* Modal footer *@
+                    <div class="flex space-x-2 items-center justify-end py-6 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button id='delete-modal-button' type="submit" onclick="deleteTodo(@info.Id)" class="block text-white bg-red-500 hover:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600">
+                            Delete status
+                        </button>
+                        <button id='cancel-modal-button' type="button" onclick="hideAlert(@info.Id)" class="block text-white bg-cyan-500 hover:bg-cyan-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </dialog>
+        }
+    </div>
+</div>

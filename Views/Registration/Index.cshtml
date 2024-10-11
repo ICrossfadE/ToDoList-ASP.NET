@@ -1,0 +1,39 @@
+﻿@model UserModel
+@{
+    ViewBag.Title = "Sign Up ";
+}
+<h1 class="text-2xl py-4">Sign Up</h1>
+
+
+<form asp-action="Register" asp-controller="Registration" class="max-w-sm mx-auto">
+    <div class="form-group mb-5">
+        <label asp-for="Email" class="control-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+        <input type="text" asp-for="Email" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        <span asp-validation-for="Email" class="text-red-500"></span> <!-- Для помилок валідації -->
+    </div>
+    <div class="form-group mb-5">
+        <label asp-for="Password" class="control-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+        <input type="password" asp-for="Password" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        <span asp-validation-for="Password" class="text-red-500"></span> <!-- Для помилок валідації -->
+    </div>
+    <div class="form-group mb-5">
+        <label asp-for="Password" class="control-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password confirm</label>
+        <input name="confirmPassword" type="password" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+        <select asp-for="Role" id="user-role" class="  p-2.5 px-1 block w-36 cursor-pointer bg-gray-50 border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </div>
+
+    <div class="form-group flex items-start mt-5">
+        <input type="submit" value="Registration" class="btn btn-default text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" />
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

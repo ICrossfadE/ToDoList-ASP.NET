@@ -95,3 +95,6 @@ M:\Projects\NET\ToDoList\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing
 M:\Projects\NET\ToDoList\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 M:\Projects\NET\ToDoList\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 M:\Projects\NET\ToDoList\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+M:\Projects\NET\ToDoList\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+M:\Projects\NET\ToDoList\bin\Debug\net8.0\BCrypt.Net-Next.dll
+M:\Projects\NET\ToDoList\bin\Debug\net8.0\Microsoft.Bcl.TimeProvider.dll

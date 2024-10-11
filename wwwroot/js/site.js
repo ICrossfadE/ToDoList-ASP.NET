@@ -8,7 +8,7 @@ function createTodo() {
     const status = document.getElementById('todo-status')?.value;
 
     $.ajax({
-        url: 'Home/Insert',
+        url: 'TodoList/Insert',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ Id: todoId, Name: name, Description: description, StatusId: status }),
@@ -27,7 +27,7 @@ function createStatus() {
         url: 'Status/Insert',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({ Id: statusId, StatusName: name}),
+        data: JSON.stringify({ Id: statusId, StatusName: name }),
         success: function (response) {
             window.location.reload();
             console.log('Status created:', response);
@@ -39,7 +39,7 @@ function createStatus() {
 function updateTodo(id) {
 
     $.ajax({
-        url: 'Home/UpdateTodo',
+        url: 'TodoList/UpdateTodo',
         type: 'GET',
         data: {
             id: id
@@ -102,7 +102,7 @@ function setStatus(id) {
     var status = $(`#todo-status-${id}`).val();
 
     $.ajax({
-        url: 'Home/SetStatusId',
+        url: 'TodoList/SetStatusId',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -119,7 +119,7 @@ function setStatus(id) {
 // Todo
 function deleteTodo(id) {
     $.ajax({
-        url: 'Home/Delete',
+        url: 'TodoList/Delete',
         type: 'DELETE',
         data: {
             id: id
@@ -146,3 +146,21 @@ function deleteStatus(id) {
     });
 }
 
+function login(email, password, role) {
+    $.ajax({
+        url: '/api/login',
+        type: 'POST',
+        contentType: 'application/json',  // Встановлюємо правильний Content-Type
+        data: JSON.stringify({
+            Email: email,
+            Password: password,
+            Roles: role
+        }),
+        success: function (response) {
+            console.log('Token:', response.token);
+        },
+        error: function (xhr, status, error) {
+            console.log('Error:', error);
+        }
+    });
+}
