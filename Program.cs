@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,20 +10,30 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 // Налаштування валідації токена JWT
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; // Використовуйте JWT Bearer як за замовчуванням
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = configuration["Jwt:Issuer"],
-            ValidAudience = configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
-        };
-    });
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = configuration["Jwt:Issuer"],
+        ValidAudience = configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+    };
+})
+.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+{
+    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home");
+    // options.LoginPath = "/api/login"; // Встановіть шлях для входу, якщо потрібно
+    // options.LogoutPath = "/api/logout"; // Встановіть шлях для виходу, якщо потрібно
+});
 
 builder.Services.AddAuthorization();
 

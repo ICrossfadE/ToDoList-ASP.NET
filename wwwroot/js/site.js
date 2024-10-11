@@ -146,21 +146,49 @@ function deleteStatus(id) {
     });
 }
 
-function login(email, password, role) {
+function register() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('user-role').value;
+
     $.ajax({
-        url: '/api/login',
+        url: '/api/register',
         type: 'POST',
-        contentType: 'application/json',  // Встановлюємо правильний Content-Type
+        contentType: 'application/json',
         data: JSON.stringify({
             Email: email,
             Password: password,
-            Roles: role
+            Role: role
         }),
         success: function (response) {
             console.log('Token:', response.token);
+
+            // Зберігаємо токен в localStorage
+            localStorage.setItem('jwt_token', response.token);
+
+            // Оновлюємо інтерфейс
+            updateAuthUI();
+
+            // Перенаправляємо на головну сторінку
+            window.location.href = '/';
         },
         error: function (xhr, status, error) {
             console.log('Error:', error);
+            alert('Помилка при реєстрації. Спробуйте ще раз.');
         }
     });
 }
+
+function updateAuthUI() {
+    const token = localStorage.getItem('jwt_token');
+    if (token) {
+        // Оновлюємо інтерфейс для авторизованого користувача
+        $('.auth-only').show();
+        $('.guest-only').hide();
+    } else {
+        // Оновлюємо інтерфейс для гостя
+        $('.auth-only').hide();
+        $('.guest-only').show();
+    }
+}
+

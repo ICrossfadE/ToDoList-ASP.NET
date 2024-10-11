@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Data.Sqlite;
@@ -89,6 +90,7 @@ public class StatusController : Controller
     }
 
     [HttpPost]
+    [Authorize (Roles = "Admin")]
     public IActionResult Insert([FromBody] StatusModel statusItem)
     {
         string connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -126,7 +128,9 @@ public class StatusController : Controller
 
 
 
+
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public JsonResult UpdateStatus(int id)
     {
         var statusItem = GetById(id);
@@ -149,6 +153,7 @@ public class StatusController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public IActionResult UpdatePosition([FromBody] List<StatusModel> newPosition)
     {
         string connectionString = _configuration.GetConnectionString("DefaultConnection");
