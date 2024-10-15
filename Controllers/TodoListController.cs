@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace ToDoList.Controllers
@@ -18,6 +19,7 @@ namespace ToDoList.Controllers
             _configuration = configuration;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var model = GetAllData();

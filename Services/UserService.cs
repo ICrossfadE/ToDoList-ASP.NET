@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+using System.Text;
 using ToDoList.Models;
 
 namespace ToDoList.Services
@@ -8,6 +11,7 @@ namespace ToDoList.Services
     {
         Task<bool> UserExists(string email);
         Task<UserModel> CreateUserAsync(UserModel userModel);
+        Task<UserModel> AuthenticateAsync(string email, string password);
     }
 
     public class UserService : IUserService
@@ -35,6 +39,24 @@ namespace ToDoList.Services
             await _dbContext.SaveChangesAsync();
 
             return user;
+        }
+
+        public async Task<UserModel> AuthenticateAsync(string email, string password)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            var result = _passwordHasher.VerifyHashedPassword(user, user.Password, password);
+            if (result == PasswordVerificationResult.Success)
+            {
+                return user;
+            }
+
+            return null;
         }
     }
 }

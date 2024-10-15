@@ -16,10 +16,16 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @* <a class="bg-blue-700 hover:bg-blue-800 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Login" asp-action="Index">Log In</a> *@
-                <a class="bg-blue-700 hover:bg-blue-800 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Registration" asp-action="Index">Sign Up</a>
-                <a class="auth-only test bg-green-500 hover:bg-green-600 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Home" asp-action="Index">ToDo List</a>
-                <a class="auth-only test bg-indigo-500 hover:bg-indigo-600 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Status" asp-action="Index">Statuses</a>
+                <div class="flex justify-between w-full">
+                    <div>
+                        <a class="auth-only test bg-green-500 hover:bg-green-600 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="TodoList" asp-action="Index">ToDo List</a>
+                        <a class="auth-only test bg-indigo-500 hover:bg-indigo-600 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Status" asp-action="Index">Statuses</a>
+                    </div>
+                    <div>
+                        <a class="bg-sky-100 hover:bg-sky-200 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Login" asp-action="Index">Log In</a>
+                        <a class="bg-sky-100 hover:bg-sky-200 rounded-lg px-2 py-1 text-gray-50 text-2xl" asp-area="" asp-controller="Registration" asp-action="Index">Sign Up</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>

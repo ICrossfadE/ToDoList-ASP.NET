@@ -163,6 +163,33 @@ function register() {
         success: function (response) {
             console.log('Token:', response.token);
 
+            // Перенаправляємо на головну сторінку
+            window.location.href = '/Home';
+        },
+        error: function (xhr, status, error) {
+            console.log('Error:', error);
+            alert('Помилка при реєстрації. Спробуйте ще раз.');
+        }
+    });
+}
+
+function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    /*const role = document.getElementById('user-role').value;*/
+
+    $.ajax({
+        url: '/api/login',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            Email: email,
+            Password: password,
+            /* Role: role*/
+        }),
+        success: function (response) {
+            console.log('Token:', response.token);
+
             // Зберігаємо токен в localStorage
             localStorage.setItem('jwt_token', response.token);
 
@@ -170,13 +197,13 @@ function register() {
             updateAuthUI();
 
             // Перенаправляємо на головну сторінку
-            // window.location.href = '/Home';
+            window.location.href = '/Home';
 
 
         },
         error: function (xhr, status, error) {
             console.log('Error:', error);
-            alert('Помилка при реєстрації. Спробуйте ще раз.');
+            alert('Помилка при авторизації. Спробуйте ще раз.');
         }
     });
 }
@@ -199,7 +226,7 @@ function checkAuthOnPageLoad() {
 
     if (token) {
         updateAuthUI(); // Оновлюємо інтерфейс
-    } else {    
+    } else {
         updateAuthUI(); // Оновлюємо інтерфейс
     }
 }
