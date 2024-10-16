@@ -7,6 +7,7 @@ using System.Text;
 using ToDoList.Models;
 using System.Threading.Tasks;
 using ToDoList.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ToDoList.Controllers
 {
@@ -21,6 +22,7 @@ namespace ToDoList.Controllers
         public LoginController(
             IUserService userService,
             IConfiguration configuration,
+
             TodoDbContext dbContext)
         {
             _userService = userService;
@@ -34,7 +36,6 @@ namespace ToDoList.Controllers
 
         [HttpPost]
         [Route("api/login")]
-        /*[Consumes("application/json")]*/
         public async Task<IActionResult> Login([FromBody] LoginRequestModal request)
         {
             // Знайти користувача за логіном
@@ -46,7 +47,12 @@ namespace ToDoList.Controllers
 
             // Генерація JWT токену
             var token = GenerateJwtToken(user);
-            return Ok(new { Token = token });
+            return Ok(new
+            {
+                Token = token,
+                Email = user.Email,
+                Role = user.Role
+            });
         }
 
         // Метод для генерації JWT токена

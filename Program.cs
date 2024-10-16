@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 // Налаштування валідації токена JWT
-builder.Services.AddAuthentication(options =>
+/*builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; // Використовуйте JWT Bearer як за замовчуванням
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -27,13 +27,17 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
     };
-});
+});*/
 
+// добавление сервисов аутентификации
+builder.Services.AddAuthentication("Bearer")  // схема аутентификации - с помощью jwt-токенов
+    .AddJwtBearer();      // подключение аутентификации с помощью jwt-токенов
 
-builder.Services.AddAuthorization();
+var app = builder.Build();
+
+app.UseAuthentication();
 
 // Реєстрація сервісів
-// builder.Services.AddScoped<AuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<UserModel>, PasswordHasher<UserModel>>();
 

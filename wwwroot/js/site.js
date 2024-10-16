@@ -21,12 +21,16 @@ function createTodo() {
 
 // Status
 function createStatus() {
+    const token = sessionStorage.getItem('jwt_token');
     const name = document.getElementById('form-status-name-input').value;
 
     $.ajax({
         url: 'Status/Insert',
         type: 'POST',
         contentType: 'application/json',
+        headers: {
+            'Authorization': 'Bearer ' + token  // Додаємо токен до заголовка
+        },
         data: JSON.stringify({ Id: statusId, StatusName: name }),
         success: function (response) {
             window.location.reload();
@@ -133,9 +137,13 @@ function deleteTodo(id) {
 
 // Status
 function deleteStatus(id) {
+    const token = sessionStorage.getItem('jwt_token');
     $.ajax({
         url: 'Status/Delete',
         type: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + token  // Додаємо токен до заголовка
+        },
         data: {
             id: id
         },
@@ -176,7 +184,6 @@ function register() {
 function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    /*const role = document.getElementById('user-role').value;*/
 
     $.ajax({
         url: '/api/login',
@@ -185,21 +192,17 @@ function login() {
         data: JSON.stringify({
             Email: email,
             Password: password,
-            /* Role: role*/
         }),
         success: function (response) {
-            console.log('Token:', response.token);
-
             // Зберігаємо токен в localStorage
-            localStorage.setItem('jwt_token', response.token);
+            sessionStorage.setItem('jwt_token', response.token);
 
-            // Оновлюємо інтерфейс
-            updateAuthUI();
+            // Зберігаємо email та роль
+            sessionStorage.setItem('user_email', response.email);
+            sessionStorage.setItem('user_role', response.role);
 
             // Перенаправляємо на головну сторінку
             window.location.href = '/Home';
-
-
         },
         error: function (xhr, status, error) {
             console.log('Error:', error);
@@ -208,27 +211,61 @@ function login() {
     });
 }
 
-function updateAuthUI() {
-    const token = localStorage.getItem('jwt_token');
-    if (token) {
-        // Оновлюємо інтерфейс для авторизованого користувача
-        console.log('Користувач авторизований');
-        $('.auth-only').show();
-    } else {
-        // Оновлюємо інтерфейс для гостя
-        console.log('Користувач не авторизований');
-        $('.auth-only').hide();
-
+function logout() {
+    const token = sessionStorage.removeItem('jwt_token');
+    if (!token) {
+        console.log('Користувач вже вийшов з системи');
+        window.location.href = '/Home';
+        return;
     }
+
+    $.ajax({
+        url: '/api/logout',
+        type: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt_token')
+        },
+        success: function () {
+            console.log('Успішний вихід з системи');
+        },
+        error: function (xhr, status, error) {
+            console.log('Помилка при виході з системи:', error);
+        },
+        complete: function () {
+            // Видаляємо токен незалежно від результату запиту
+            sessionStorage.removeItem('jwt_token');
+            sessionStorage.removeItem('user_email')
+            sessionStorage.removeItem('user_role')
+            window.location.href = '/Home';
+        }
+    });
 }
-function checkAuthOnPageLoad() {
-    const token = localStorage.getItem('jwt_token');
 
-    if (token) {
-        updateAuthUI(); // Оновлюємо інтерфейс
-    } else {
-        updateAuthUI(); // Оновлюємо інтерфейс
+function checkAuthOnPageLoad() {
+    const token = sessionStorage.getItem('jwt_token');
+    if (!token) {
+        console.log('Не авторизований: токен відсутній');
+        return;
     }
+
+    $.ajax({
+        type: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token  // Додаємо токен до заголовка
+        },
+        success: function (response) {
+            console.log('Авторизований.');
+            console.log(sessionStorage.getItem('jwt_token'))
+
+            // Оновлюємо інформацію на сторінці
+            document.getElementById('userEmail').innerText = sessionStorage.getItem('user_email');
+            document.getElementById('userRole').innerText = sessionStorage.getItem('user_role');
+
+        },
+        error: function (xhr, status, error) {
+            alert('Помилка авторизації.');
+        }
+    });
 }
 
 // Викликаємо функцію при завантаженні сторінки

@@ -19,12 +19,12 @@ namespace ToDoList.Controllers
             _configuration = configuration;
         }
 
-        [Authorize]
         public IActionResult Index()
         {
             var model = GetAllData();
             return View(model);
         }
+
 
         public AllTodoListModel GetAllData()
         {
@@ -113,6 +113,7 @@ namespace ToDoList.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public JsonResult UpdateTodo(int id)
         {
             var todo = GetById(id);
@@ -120,6 +121,7 @@ namespace ToDoList.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Insert([FromBody] ToDoModel todo)
         {
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -160,6 +162,7 @@ namespace ToDoList.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult SetStatusId([FromBody] ToDoModel todo)
         {
             if (todo == null || todo.Id == 0 || todo.StatusId == 0)
@@ -191,6 +194,7 @@ namespace ToDoList.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public JsonResult Delete(int id)
         {
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
