@@ -24,7 +24,7 @@ public class StatusController : Controller
         return View(statusList);
     }
 
-
+    [Authorize]
     public AllTodoListModel GetAllStatus()
     {
         List<StatusModel> statusList = [];
@@ -62,7 +62,7 @@ public class StatusController : Controller
         }
     }
 
-    //[Authorize]
+    [Authorize]
     public StatusModel GetById(int id)
     {
         StatusModel statusItem = new();
@@ -94,7 +94,6 @@ public class StatusController : Controller
 
     [HttpPost]
     [Authorize]
-    // [Authorize(Roles = "Admin")]
     public IActionResult Insert([FromBody] StatusModel statusItem)
     {
         string connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -134,15 +133,15 @@ public class StatusController : Controller
 
 
     [HttpGet]
-    // [Authorize(Roles = "Admin")]
+    [Authorize]
     public JsonResult UpdateStatus(int id)
     {
         var statusItem = GetById(id);
         return Json(statusItem);
     }
 
-    [Authorize]
     [HttpDelete]
+    [Authorize]
     public JsonResult Delete(int id)
     {
         string connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -158,7 +157,7 @@ public class StatusController : Controller
     }
 
     [HttpPost]
-    // [Authorize(Roles = "Admin")]
+    [Authorize]
     public IActionResult UpdatePosition([FromBody] List<StatusModel> newPosition)
     {
         string connectionString = _configuration.GetConnectionString("DefaultConnection");

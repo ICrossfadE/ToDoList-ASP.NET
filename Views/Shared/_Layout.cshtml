@@ -40,10 +40,12 @@
         <div class="container">
             &copy; 2024 - ToDoList - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+
     </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/view1.js" defer></script>
     <script src="~/js/view2.js" defer></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

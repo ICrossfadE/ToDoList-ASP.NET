@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ToDoList.Controllers
 {
-    /*[ApiController]
-    [Route("api/[controller]")]*/
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly IUserService _userService;

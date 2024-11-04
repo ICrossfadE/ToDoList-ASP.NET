@@ -25,7 +25,7 @@ namespace ToDoList.Controllers
             return View(model);
         }
 
-
+        [Authorize]
         public AllTodoListModel GetAllData()
         {
             List<ToDoModel> todoList = [];

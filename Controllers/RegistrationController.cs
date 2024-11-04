@@ -12,11 +12,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using ToDoList.Models;
 using ToDoList.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ToDoList.Controllers
 {
-    /* [ApiController]
-     [Route("api/[controller]")]*/
+    [AllowAnonymous]
     public class RegistrationController : Controller
     {
         private readonly IUserService _userService;
@@ -55,6 +55,6 @@ namespace ToDoList.Controllers
         }
 
 
-       
+
     }
 }

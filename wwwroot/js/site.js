@@ -6,10 +6,20 @@ function createTodo() {
     const name = document.getElementById('form-input').value;
     const description = document.getElementById('form-textarea').value;
     const status = document.getElementById('todo-status')?.value;
+    const token = sessionStorage.getItem('jwt_token');
+
+    if (!token) {
+        console.error('No token found');
+        alert('Ви не авторизовані. Будь ласка, увійдіть в систему.');
+        return;
+    }
 
     $.ajax({
         url: 'TodoList/Insert',
         type: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`   // Додаємо токен до заголовка
+        },
         contentType: 'application/json',
         data: JSON.stringify({ Id: todoId, Name: name, Description: description, StatusId: status }),
         success: function (response) {
@@ -23,6 +33,12 @@ function createTodo() {
 function createStatus() {
     const token = sessionStorage.getItem('jwt_token');
     const name = document.getElementById('form-status-name-input').value;
+
+    if (!token) {
+        console.error('No token found');
+        alert('Ви не авторизовані. Будь ласка, увійдіть в систему.');
+        return;
+    }
 
     $.ajax({
         url: 'Status/Insert',
@@ -41,10 +57,20 @@ function createStatus() {
 
 // Todo
 function updateTodo(id) {
+    const token = sessionStorage.getItem('jwt_token');
+
+    if (!token) {
+        console.error('No token found');
+        alert('Ви не авторизовані. Будь ласка, увійдіть в систему.');
+        return;
+    }
 
     $.ajax({
         url: 'TodoList/UpdateTodo',
         type: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`   // Додаємо токен до заголовка
+        },
         data: {
             id: id
         },
@@ -72,10 +98,22 @@ function updateTodo(id) {
 }
 
 // Status
+
 function updateStatus(id) {
+    const token = sessionStorage.getItem('jwt_token');
+
+    if (!token) {
+        console.error('No token found');
+        alert('Ви не авторизовані. Будь ласка, увійдіть в систему.');
+        return;
+    }
+
     $.ajax({
         url: 'Status/UpdateStatus',
         type: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`   // Додаємо токен до заголовка
+        },
         data: {
             id: id
         },
@@ -103,11 +141,21 @@ function updateStatus(id) {
 }
 
 function setStatus(id) {
+    const token = sessionStorage.getItem('jwt_token');
     var status = $(`#todo-status-${id}`).val();
+
+    if (!token) {
+        console.error('No token found');
+        alert('Ви не авторизовані. Будь ласка, увійдіть в систему.');
+        return;
+    }
 
     $.ajax({
         url: 'TodoList/SetStatusId',
         type: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`   // Додаємо токен до заголовка
+        },
         contentType: 'application/json',
         data: JSON.stringify({
             Id: id,
@@ -122,9 +170,25 @@ function setStatus(id) {
 
 // Todo
 function deleteTodo(id) {
+    const token = sessionStorage.getItem('jwt_token');
+    // Перевірка наявності токена
+    if (!token) {
+        console.error('No token found');
+        alert('Ви не авторизовані. Будь ласка, увійдіть в систему.');
+        return;
+    }
+
+    // Додамо console.log для відлагодження
+    console.log('Token:', token);
+    console.log('Deleting status with ID:', id);
+
+
     $.ajax({
         url: 'TodoList/Delete',
         type: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`   // Додаємо токен до заголовка
+        },
         data: {
             id: id
         },
@@ -137,12 +201,23 @@ function deleteTodo(id) {
 
 // Status
 function deleteStatus(id) {
+
     const token = sessionStorage.getItem('jwt_token');
+    // Перевірка наявності токена
+    if (!token) {
+        console.error('No token found');
+        alert('Ви не авторизовані. Будь ласка, увійдіть в систему.');
+        return;
+    }
+
+    console.log('Token:', token);
+    console.log('Deleting status with ID:', id);
+
     $.ajax({
-        url: 'Status/Delete',
+        url: `Status/Delete`,
         type: 'DELETE',
         headers: {
-            'Authorization': 'Bearer ' + token  // Додаємо токен до заголовка
+            'Authorization': `Bearer ${token}`   // Додаємо токен до заголовка
         },
         data: {
             id: id
