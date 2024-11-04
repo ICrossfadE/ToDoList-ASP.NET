@@ -3,44 +3,24 @@
   "WorkspaceRootPath": "M:\\Projects\\NET\\ToDoList\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\todolistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\todolistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\registrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\registrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\views\\status\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:views\\status\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:controllers\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\views\\status\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:views\\status\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|m:\\projects\\net\\todolist\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{19EBBD97-FD2B-480B-A81F-2D92033CBFA9}|ToDoList.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,115 +30,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProfileController.cs",
-              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Controllers\\ProfileController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProfileController.cs",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\ProfileController.cs*",
-              "RelativeToolTip": "Controllers\\ProfileController.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T11:52:23.786Z",
+              "DocumentIndex": 0,
+              "Title": "index.cshtml",
+              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Views\\Status\\index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Status\\index.cshtml",
+              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Views\\Status\\index.cshtml",
+              "RelativeToolTip": "Views\\Status\\index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-04T12:51:38.221Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
+              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Controllers\\LoginController.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAwwEQAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:48:33.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Program.cs*",
-              "RelativeToolTip": "Program.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAArAAAA",
+              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAAAD8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-04T09:36:24.377Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "Views\\_ViewImports.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-04T09:55:04.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T09:39:24.98Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RegistrationController.cs",
-              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Controllers\\RegistrationController.cs",
-              "RelativeDocumentMoniker": "Controllers\\RegistrationController.cs",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\RegistrationController.cs*",
-              "RelativeToolTip": "Controllers\\RegistrationController.cs*",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABIAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T09:34:28.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\LoginController.cs*",
-              "RelativeToolTip": "Controllers\\LoginController.cs*",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T09:33:26.705Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "StatusController.cs",
               "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Controllers\\StatusController.cs",
               "RelativeDocumentMoniker": "Controllers\\StatusController.cs",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\StatusController.cs*",
-              "RelativeToolTip": "Controllers\\StatusController.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAEAAAA",
+              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\StatusController.cs",
+              "RelativeToolTip": "Controllers\\StatusController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-25T11:52:08.251Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TodoListController.cs",
-              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Controllers\\TodoListController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TodoListController.cs",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Controllers\\TodoListController.cs",
-              "RelativeToolTip": "Controllers\\TodoListController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T11:49:57.204Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "site.js",
               "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
@@ -167,19 +95,6 @@
               "ViewState": "AQIAAMIAAAAAAAAAAADwv8wAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-10-16T14:29:05.161Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "index.cshtml",
-              "DocumentMoniker": "M:\\Projects\\NET\\ToDoList\\Views\\Status\\index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Status\\index.cshtml",
-              "ToolTip": "M:\\Projects\\NET\\ToDoList\\Views\\Status\\index.cshtml",
-              "RelativeToolTip": "Views\\Status\\index.cshtml",
-              "ViewState": "AQIAADcAAAAAAAAAAAAAAFcAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-04T09:55:53.068Z",
               "EditorCaption": ""
             }
           ]

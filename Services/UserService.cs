@@ -33,7 +33,7 @@ namespace ToDoList.Services
         public async Task<UserModel> CreateUserAsync(UserModel user)
         {
             // Хешування пароля перед збереженням
-            user.Password = _passwordHasher.HashPassword(user, user.Password);
+            user.Password = HashPasswordWithSHA256(user.Password);
 
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
@@ -58,5 +58,21 @@ namespace ToDoList.Services
 
             return null;
         }
+
+        // Метод для хешування пароля за допомогою SHA-256
+        private string HashPasswordWithSHA256(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2")); // Перетворення байтів в шістнадцятковий формат
+                }
+                return builder.ToString();
+            }
+        }
+
     }
 }

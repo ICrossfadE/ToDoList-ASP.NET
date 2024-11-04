@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using ToDoList.Models;
 using ToDoList.Services;
 
@@ -14,9 +15,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TodoDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+
 // Реєстрація сервісів
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<UserModel>, PasswordHasher<UserModel>>();
+
+
 
 // Налаштування валідації токена JWT
 builder.Services.AddAuthentication(options =>
@@ -57,13 +61,13 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddAuthorization();
-/*builder.Services.AddAuthorization(options =>
+builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminOrAuthenticated", policy =>
-       // policy.RequireClaim("role", "Admin"));
-       // policy.RequireAuthenticatedUser());
-});*/
+    options.AddPolicy("OnlyAdmin", policy =>
+    {
+        policy.RequireClaim(ClaimTypes.Role, "Admin");
+    });
+});
 
 var app = builder.Build();
 
